@@ -18,26 +18,83 @@
         </aside>
         <main>
             <section id="overview" class="active">
-                <h2>Dashboard Overview</h2>
-                <div class="overview-boxes">
-                    <div class="box">
-                        <h3>Total Students</h3>
-                        <p id="totalStudents">...</p>
+                <h2 style="margin-bottom: 1.5rem; font-size: 2rem; font-weight: 700; letter-spacing: 1px;">Dashboard Overview</h2>
+                <div class="overview-cards" style="display: flex; flex-wrap: wrap; gap: 2rem; margin-bottom: 2.5rem;">
+                    <div class="overview-card" style="flex:1; min-width: 220px; background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(66,153,225,0.08); padding: 2rem 1.5rem; display: flex; align-items: center; gap: 1.2rem;">
+                        <div style="background: #4299e1; color: #fff; border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div>
+                            <div style="font-size: 1.1rem; color: #718096;">Total Students</div>
+                            <div id="totalStudents" style="font-size: 2rem; font-weight: bold; color: #2d3748;">...</div>
+                        </div>
                     </div>
-                    <div class="box">
-                        <h3>Total Courses</h3>
-                        <p id="totalCourses">...</p>
+                    <div class="overview-card" style="flex:1; min-width: 220px; background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(66,153,225,0.08); padding: 2rem 1.5rem; display: flex; align-items: center; gap: 1.2rem;">
+                        <div style="background: #48bb78; color: #fff; border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div>
+                            <div style="font-size: 1.1rem; color: #718096;">Total Courses</div>
+                            <div id="totalCourses" style="font-size: 2rem; font-weight: bold; color: #2d3748;">...</div>
+                        </div>
                     </div>
-                    <div class="box">
-                        <h3>Average Grade</h3>
-                        <p id="averageGrade">...</p>
+                    <div class="overview-card" style="flex:1; min-width: 220px; background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(66,153,225,0.08); padding: 2rem 1.5rem; display: flex; align-items: center; gap: 1.2rem;">
+                        <div style="background: #f6ad55; color: #fff; border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div>
+                            <div style="font-size: 1.1rem; color: #718096;">Average Grade</div>
+                            <div id="averageGrade" style="font-size: 2rem; font-weight: bold; color: #2d3748;">...</div>
+                        </div>
                     </div>
                 </div>
-                <div class="diagram">
-                    <img src="https://via.placeholder.com/600x250?text=Course+Progress+Diagram" alt="Diagram Placeholder">
+                <div class="extra-analytics" style="display: flex; flex-wrap: wrap; gap: 2rem; margin-bottom: 2.5rem;">
+                    <div class="overview-card" style="flex:1; min-width: 220px; background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(66,153,225,0.08); padding: 1.5rem 1.2rem; display: flex; align-items: center; gap: 1.2rem;">
+                        <div style="background: #805ad5; color: #fff; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div>
+                            <div style="font-size: 1rem; color: #718096;">Top GPA</div>
+                            <div id="topGpa" style="font-size: 1.3rem; font-weight: bold; color: #2d3748;">...</div>
+                        </div>
+                    </div>
+                    <div class="overview-card" style="flex:1; min-width: 220px; background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(66,153,225,0.08); padding: 1.5rem 1.2rem; display: flex; align-items: center; gap: 1.2rem;">
+                        <div style="background: #e53e3e; color: #fff; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <div>
+                            <div style="font-size: 1rem; color: #718096;">Pass Rate</div>
+                            <div id="passRate" style="font-size: 1.3rem; font-weight: bold; color: #2d3748;">...</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="gpa-table-container" style="margin-top:2rem">
-                    <h3>Student GPA</h3>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+                <script>
+                function loadDashboardOverview() {
+                    fetch('/api/dashboard/overview')
+                        .then(res => res.json())
+                        .then(data => {
+                            document.getElementById('totalStudents').textContent = data.totalStudents;
+                            document.getElementById('totalCourses').textContent = data.totalCourses;
+                            document.getElementById('averageGrade').textContent = data.averageGradePercent.toFixed(2) + '%';
+                            if (data.topGpa !== undefined) document.getElementById('topGpa').textContent = data.topGpa.toFixed(2);
+                            if (data.passRate !== undefined) document.getElementById('passRate').textContent = data.passRate.toFixed(1) + '%';
+                        });
+                }
+                document.addEventListener('DOMContentLoaded', function() {
+                    loadDashboardOverview();
+                    if (typeof loadGpaTable === 'function') loadGpaTable();
+                });
+                </script>
+
+                <!-- GPA per course section -->
+                <div class="gpa-table-container" style="margin-top:2.5rem">
+                    <h3>Course GPA Report</h3>
+                    <label for="gpaCourseSelect">Select Course:</label>
+                    <select id="gpaCourseSelect" style="margin-bottom: 1rem; min-width: 220px;">
+                        <option value="">-- Select a course --</option>
+                        <option th:each="course : ${courses}" th:value="${course.id}" th:text="${course.name}"></option>
+                    </select>
                     <div class="table-container">
                         <table>
                             <thead>
@@ -49,19 +106,21 @@
                                     <th>Grade</th>
                                 </tr>
                             </thead>
-                            <tbody id="gpaTableBody">
-                                <!-- GPA rows will be filled by JS -->
+                            <tbody id="courseGpaTableBody">
+                                <!-- Filled by JS -->
                             </tbody>
                         </table>
                     </div>
                 </div>
                 <script>
-                function loadGpaTable() {
-                    fetch('/api/students/gpa')
+                document.getElementById('gpaCourseSelect').addEventListener('change', function() {
+                    const courseId = this.value;
+                    const tbody = document.getElementById('courseGpaTableBody');
+                    tbody.innerHTML = '';
+                    if (!courseId) return;
+                    fetch(`/api/courses/${courseId}/gpa`)
                         .then(res => res.json())
                         .then(data => {
-                            const tbody = document.getElementById('gpaTableBody');
-                            tbody.innerHTML = '';
                             data.forEach(row => {
                                 const tr = document.createElement('tr');
                                 tr.innerHTML = `
@@ -74,19 +133,6 @@
                                 tbody.appendChild(tr);
                             });
                         });
-                }
-                function loadDashboardOverview() {
-                    fetch('/api/dashboard/overview')
-                        .then(res => res.json())
-                        .then(data => {
-                            document.getElementById('totalStudents').textContent = data.totalStudents;
-                            document.getElementById('totalCourses').textContent = data.totalCourses;
-                            document.getElementById('averageGrade').textContent = data.averageGradePercent.toFixed(2) + '%';
-                        });
-                }
-                document.addEventListener('DOMContentLoaded', function() {
-                    loadDashboardOverview();
-                    if (typeof loadGpaTable === 'function') loadGpaTable();
                 });
                 </script>
             </section>
@@ -200,7 +246,7 @@
             document.getElementById('gradeForm').style.display = select.value === "" ? 'none' : 'block';
         }
         function logout() {
-            alert("Logging out...");
+            window.location.href = "http://localhost:8080/logout";
         }
     </script>
 

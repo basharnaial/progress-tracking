@@ -77,6 +77,40 @@ public class CourseController {
             }
             studentCourseRepository.saveAll(enrollments);
         }
+
+        @GetMapping("/{courseId}/gpa")
+        public List<Map<String, Object>> getCourseGpa(@PathVariable Long courseId) {
+            List<StudentCourse> enrollments = studentCourseRepository.findByCourseId(courseId);
+            List<Map<String, Object>> result = new ArrayList<>();
+            for (StudentCourse sc : enrollments) {
+                if (!Boolean.TRUE.equals(sc.getFinished())) continue;
+                double total =
+                    (sc.getMidterm() != null ? sc.getMidterm() : 0) +
+                    (sc.getFinalExam() != null ? sc.getFinalExam() : 0) +
+                    (sc.getAssignments() != null ? sc.getAssignments() : 0) +
+                    (sc.getQuizzes() != null ? sc.getQuizzes() : 0) +
+                    (sc.getProject() != null ? sc.getProject() : 0) +
+                    (sc.getAttendance() != null ? sc.getAttendance() : 0);
+                double gpa = (total / 100.0) * 4.0;
+                String gradeCategory;
+                String color;
+                if (gpa >= 3.7) { gradeCategory = "Excellent"; color = "#228B22"; }
+                else if (gpa >= 3.3) { gradeCategory = "Very Good"; color = "#32CD32"; }
+                else if (gpa >= 2.7) { gradeCategory = "Good"; color = "#1E90FF"; }
+                else if (gpa >= 2.0) { gradeCategory = "Fair"; color = "#FFA500"; }
+                else if (gpa >= 1.0) { gradeCategory = "Pass"; color = "#FFD700"; }
+                else { gradeCategory = "Fail"; color = "#FF1744"; }
+                Map<String, Object> row = new HashMap<>();
+                row.put("studentId", sc.getStudent().getId());
+                row.put("name", sc.getStudent().getFirstName() + " " + sc.getStudent().getLastName());
+                row.put("gpa", gpa);
+                row.put("percentage", total);
+                row.put("gradeCategory", gradeCategory);
+                row.put("color", color);
+                result.add(row);
+            }
+            return result;
+        }
     }
 
     @RestController
@@ -158,6 +192,7 @@ public class CourseController {
             List<StudentCourse> finished = studentCourseRepository.findAll().stream().filter(sc -> Boolean.TRUE.equals(sc.getFinished())).collect(Collectors.toList());
             double total = 0;
             int count = 0;
+            Map<Long, List<Double>> studentGpas = new HashMap<>();
             for (StudentCourse sc : finished) {
                 double sum =
                     (sc.getMidterm() != null ? sc.getMidterm() : 0) +
@@ -168,12 +203,21 @@ public class CourseController {
                     (sc.getAttendance() != null ? sc.getAttendance() : 0);
                 total += sum;
                 count++;
+                double gpaForCourse = (sum / 100.0) * 4.0;
+                studentGpas.computeIfAbsent(sc.getStudent().getId(), k -> new ArrayList<>()).add(gpaForCourse);
             }
             double averageGradePercent = count > 0 ? (total / count) : 0;
+            // Top GPA and Pass Rate
+            List<Double> avgGpas = studentGpas.values().stream()
+                .map(list -> list.stream().mapToDouble(Double::doubleValue).average().orElse(0)).collect(Collectors.toList());
+            double topGpa = avgGpas.stream().mapToDouble(Double::doubleValue).max().orElse(0);
+            double passRate = avgGpas.isEmpty() ? 0 : (100.0 * avgGpas.stream().filter(gpa -> gpa >= 2.0).count() / avgGpas.size());
             Map<String, Object> map = new HashMap<>();
             map.put("totalStudents", totalStudents);
             map.put("totalCourses", totalCourses);
             map.put("averageGradePercent", averageGradePercent);
+            map.put("topGpa", topGpa);
+            map.put("passRate", passRate);
             return map;
         }
     }
