@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Courses Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<h1>Courses Dashboard</h1>
+
+<nav>
+    <a th:href="@{/courses/add}">Add New Course</a>
+</nav>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Teacher</th>
+        <th>Enrolled Students</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="course : ${courses}">
+        <td th:text="${course.id}"></td>
+        <td>
+            <a th:href="@{/courses/{id}/students(id=${course.id})}"
+               th:text="${course.name}"></a>
+        </td>
+        <td th:text="${course.description}"></td>
+        <td th:text="${course.teacher.firstName + ' ' + course.teacher.lastName}"></td>
+        <td th:text="${course.enrolledStudents.size()}"></td>
+        <td>
+            <a th:href="@{/courses/{id}/edit(id=${course.id})}">Edit</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

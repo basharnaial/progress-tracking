@@ -1,0 +1,41 @@
+package com.secure.course;
+
+import com.secure.appuser.AppUser;
+import com.secure.model.StudentCourse;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+@Data
+@NoArgsConstructor
+@Entity
+public class Course {
+    @Id
+    @SequenceGenerator(
+            name = "course_sequence", // wtf
+            sequenceName = "course_sequence", // wtf
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "course_sequence"
+    )
+    private Long id;
+
+    private String name;
+    private String description;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "teacher_id", nullable = false)
+    private AppUser teacher;
+
+    @OneToMany(
+            mappedBy = "course",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<StudentCourse> enrollments = new HashSet<>();
+}
