@@ -53,14 +53,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>101</td>
-                            <td><a class="view-link" href="#">Introduction to Java</a></td>
-                            <td>Basic Java programming concepts</td>
-                            <td>John Smith</td>
-                            <td>25</td>
-                            <td><a class="edit-link" href="#">Edit</a></td>
-                        </tr>
+<!--                        <tr>-->
+<!--                            <td>101</td>-->
+<!--                            <td><a class="view-link" href="#">Introduction to Java</a></td>-->
+<!--                            <td>Basic Java programming concepts</td>-->
+<!--                            <td>John Smith</td>-->
+<!--                            <td>25</td>-->
+<!--                            <td><a class="edit-link" href="#">Edit</a></td>-->
+<!--                        </tr>-->
                         <tr th:each="course : ${courses}">
                             <td th:text="${course.id}"></td>
                             <td>
@@ -107,52 +107,29 @@
 
             <section id="attendance">
                 <h2>Attendance Entry</h2>
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Student ID</th>
-                        <th>Student Name</th>
-                        <th>Date</th>
-                        <th>Status</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>2021001</td>
-                        <td>Sarah Ali</td>
-                        <td class="date">2025-05-15</td>
-                        <td>
-                            <input type="checkbox"
-                                   checked
-                                   onchange="toggleStatusColor(this)"
-                                   class="status-toggle">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2021002</td>
-                        <td>Omar Khalid</td>
-                        <td class="date">2025-05-15</td>
-                        <td>
-                            <input type="checkbox"
-                                   checked
-                                   onchange="toggleStatusColor(this)"
-                                   class="status-toggle">
-                        </td>
-                    </tr>
-                    <tr th:each="record : ${attendanceList}">
-                        <td th:text="${record.studentId}"></td>
-                        <td th:text="${record.studentName}"></td>
-                        <td class="date" th:text="${record.date}"></td>
-                        <td>
-                            <input type="checkbox"
-                                   th:checked="${record.status == 'Present'}"
-                                   onchange="toggleStatusColor(this)"
-                                   class="status-toggle">
-                        </td>
-                    </tr>
-
-                    </tbody>
-                </table>
+                <label for="attendanceCourseSelect">Select Course:</label>
+                <select id="attendanceCourseSelect" onchange="loadAttendanceStudents()">
+                    <option value="">-- Select a course --</option>
+                    <option th:each="course : ${courses}" th:value="${course.id}" th:text="${course.name}"></option>
+                </select>
+                <form id="attendanceForm" style="display:none" onsubmit="return saveAttendance(event)">
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Student ID</th>
+                                    <th>Student Name</th>
+                                    <th>Date</th>
+                                    <th>Status (Absent)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="attendanceTableBody">
+                                <!-- Filled by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <button type="submit" class="primary">Save</button>
+                </form>
             </section>
         </main>
     </div>
@@ -182,6 +159,54 @@
                 checkbox.classList.add('red');
             }
         }
+    </script>
+
+    <script>
+    function loadAttendanceStudents() {
+        const courseId = document.getElementById('attendanceCourseSelect').value;
+        const form = document.getElementById('attendanceForm');
+        const tbody = document.getElementById('attendanceTableBody');
+        tbody.innerHTML = '';
+        if (!courseId) {
+            form.style.display = 'none';
+            return;
+        }
+        fetch(`/api/courses/${courseId}/students`)
+            .then(res => res.json())
+            .then(data => {
+                const today = new Date().toISOString().slice(0, 10);
+                data.forEach(student => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${student.id}</td>
+                        <td>${student.name}</td>
+                        <td>${today}</td>
+                        <td><input type="checkbox" name="absent" value="${student.id}"></td>
+                    `;
+                    tbody.appendChild(row);
+                });
+                form.style.display = '';
+            });
+    }
+
+    function saveAttendance(event) {
+        event.preventDefault();
+        const courseId = document.getElementById('attendanceCourseSelect').value;
+        const absentIds = Array.from(document.querySelectorAll('input[name="absent"]:checked')).map(cb => cb.value);
+        fetch(`/api/courses/${courseId}/attendance`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(absentIds)
+        }).then(res => {
+            if (res.ok) {
+                alert('Attendance saved!');
+                loadAttendanceStudents();
+            } else {
+                alert('Error saving attendance');
+            }
+        });
+        return false;
+    }
     </script>
 
 </body>
