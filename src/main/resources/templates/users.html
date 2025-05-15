@@ -87,49 +87,46 @@
     </style>
 </head>
 <body>
-<div class="navbar">
-    <div class="navbar-title">User Management</div>
-    <a class="add-btn" href="#">+ Add User</a>
-</div>
+    <div th:replace="fragments/navbar :: navbarFragment"></div>
 
-<div class="content">
-    <h2>Manage Users</h2>
-    <div class="table-container">
-        <table>
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>U001</td>
-                <td>Ali Saleh</td>
-                <td>ali@example.com</td>
-                <td class="role-teacher">Teacher</td>
-                <td><a class="edit-link" href="#">Edit</a></td>
-            </tr>
-            <tr>
-                <td>U002</td>
-                <td>Lina Ahmed</td>
-                <td>lina@example.com</td>
-                <td class="role-student">Student</td>
-                <td><a class="edit-link" href="#">Edit</a></td>
-            </tr>
-            <tr th:each="user : ${users}">
-                <td th:text="${user.id}"></td>
-                <td th:text="${user.name}"></td>
-                <td th:text="${user.email}"></td>
-                <td th:classappend="${user.role == 'Student'} ? 'role-student' : 'role-teacher'" th:text="${user.role}"></td>
-                <td><a class="edit-link" th:href="@{/users/{id}/edit(id=${user.id})}">Edit</a></td>
-            </tr>
-            </tbody>
-        </table>
+    <div class="content">
+        <h2>Manage Users</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>U001</td>
+                    <td>Ali Saleh</td>
+                    <td>ali@example.com</td>
+                    <td class="role-teacher">Teacher</td>
+                    <td><a class="edit-link" href="#">Edit</a></td>
+                </tr>
+                <tr>
+                    <td>U002</td>
+                    <td>Lina Ahmed</td>
+                    <td>lina@example.com</td>
+                    <td class="role-student">Student</td>
+                    <td><a class="edit-link" href="#">Edit</a></td>
+                </tr>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.id}"></td>
+                    <td th:text="${user.name}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td th:classappend="${user.role == 'Student'} ? 'role-student' : 'role-teacher'" th:text="${user.role}"></td>
+                    <td><a class="edit-link" th:href="@{/users/{id}/edit(id=${user.id})}">Edit</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 </body>
 </html>

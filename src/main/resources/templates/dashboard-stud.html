@@ -182,205 +182,197 @@
 
 </head>
 <body>
-<div class="navbar">
-    <div class="navbar-title">Dashboard</div>
-    <ul>
-        <li class="active">Courses</li>
-        <li>Messages</li>
-        <li>Forums</li>
-    </ul>
-    <a class="add-btn" th:href="@{/courses/add}">Add New Course</a>
-</div>
-<div class="layout">
-    <aside>
-        <h3>Teacher Menu</h3>
-        <button onclick="showSection('overview')">Dashboard Overview</button>
-        <button onclick="showSection('courses')">Courses</button>
-        <button onclick="showSection('grades')">Grade Entry</button>
-        <button onclick="showSection('attendance')">Attendance</button>
-        <button onclick="logout()">Logout</button>
-    </aside>
-    <main>
-        <section id="overview" class="active">
-            <h2>Dashboard Overview</h2>
-            <div class="overview-boxes">
-                <div class="box">
-                    <h3>Total Students</h3>
-                    <p>120</p>
+    <div th:replace="fragments/navbar :: navbarFragment"></div>
+    <div class="layout">
+        <aside>
+            <h3>Teacher Menu</h3>
+            <button onclick="showSection('overview')">Dashboard Overview</button>
+            <button onclick="showSection('courses')">Courses</button>
+            <button onclick="showSection('grades')">Grade Entry</button>
+            <button onclick="showSection('attendance')">Attendance</button>
+            <button onclick="logout()">Logout</button>
+        </aside>
+        <main>
+            <section id="overview" class="active">
+                <h2>Dashboard Overview</h2>
+                <div class="overview-boxes">
+                    <div class="box">
+                        <h3>Total Students</h3>
+                        <p>120</p>
+                    </div>
+                    <div class="box">
+                        <h3>Total Courses</h3>
+                        <p>5</p>
+                    </div>
+                    <div class="box">
+                        <h3>Average Grade</h3>
+                        <p>84%</p>
+                    </div>
                 </div>
-                <div class="box">
-                    <h3>Total Courses</h3>
-                    <p>5</p>
+                <div class="diagram">
+                    <img src="https://via.placeholder.com/600x250?text=Course+Progress+Diagram" alt="Diagram Placeholder">
                 </div>
-                <div class="box">
-                    <h3>Average Grade</h3>
-                    <p>84%</p>
+            </section>
+
+            <section id="courses">
+                <h2>Course Management</h2>
+                <a class="primary" th:href="@{/courses/add}">+ Add Course</a>
+
+                <select id="courseSelect" onchange="filterCourses()">
+                    <option value="">-- Select a course --</option>
+                    <option th:each="course : ${courses}" th:value="${course.id}" th:text="${course.name}"></option>
+                </select>
+
+                <div id="courseStudents" style="margin-top:1rem; display:none">
+                    <h3>Enrolled Students</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Teacher</th>
+                                <th>Enrolled</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="course : ${courses}" th:if="${course.id} == ${selectedCourseId}">
+                                <td th:text="${course.id}"></td>
+                                <td>
+                                    <a class="view-link" th:href="@{/courses/{id}/students(id=${course.id})}"
+                                       th:text="${course.name}"></a>
+                                </td>
+                                <td th:text="${course.description}"></td>
+                                <td th:text="${course.teacher.firstName + ' ' + course.teacher.lastName}"></td>
+                                <td th:text="${course.enrolledStudents.size()}"></td>
+                                <td>
+                                    <a class="edit-link" th:href="@{/courses/{id}/edit(id=${course.id})}">Edit</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
-            <div class="diagram">
-                <img src="https://via.placeholder.com/600x250?text=Course+Progress+Diagram" alt="Diagram Placeholder">
-            </div>
-        </section>
+            </section>
 
-        <section id="courses">
-            <h2>Course Management</h2>
-            <a class="primary" th:href="@{/courses/add}">+ Add Course</a>
+            <script>
+                function filterCourses() {
+                    const selectedId = document.getElementById("courseSelect").value;
+                    const container = document.getElementById("courseStudents");
+                    if (selectedId) {
+                        window.location.href = `/courses?selectedCourseId=${selectedId}`;
+                    } else {
+                        container.style.display = 'none';
+                    }
+                }
+            </script>
 
-            <select id="courseSelect" onchange="filterCourses()">
-                <option value="">-- Select a course --</option>
-                <option th:each="course : ${courses}" th:value="${course.id}" th:text="${course.name}"></option>
-            </select>
-
-            <div id="courseStudents" style="margin-top:1rem; display:none">
-                <h3>Enrolled Students</h3>
-                <div class="table-container">
+            <section id="grades">
+                <h2>Grade Entry</h2>
+                <select id="gradeCourseSelect" onchange="displayGradeForm()">
+                    <option value="">-- Select a course --</option>
+                    <option value="math">Math 101</option>
+                    <option value="physics">Physics 202</option>
+                </select>
+                <div id="gradeForm" style="margin-top:1rem; display:none">
                     <table>
-                        <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Teacher</th>
-                            <th>Enrolled</th>
-                            <th>Actions</th>
+                            <th>Student</th><th>Midterm</th><th>Final</th><th>Quizzes</th><th>Assignments</th><th>Project</th><th>Attendance</th><th>Finished</th>
                         </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="course : ${courses}" th:if="${course.id} == ${selectedCourseId}">
-                            <td th:text="${course.id}"></td>
-                            <td>
-                                <a class="view-link" th:href="@{/courses/{id}/students(id=${course.id})}"
-                                   th:text="${course.name}"></a>
-                            </td>
-                            <td th:text="${course.description}"></td>
-                            <td th:text="${course.teacher.firstName + ' ' + course.teacher.lastName}"></td>
-                            <td th:text="${course.enrolledStudents.size()}"></td>
-                            <td>
-                                <a class="edit-link" th:href="@{/courses/{id}/edit(id=${course.id})}">Edit</a>
-                            </td>
+                        <tr>
+                            <td>John Doe</td>
+                            <td><input type="number"></td>
+                            <td><input type="number"></td>
+                            <td><input type="number"></td>
+                            <td><input type="number"></td>
+                            <td><input type="number"></td>
+                            <td><input type="number"></td>
+                            <td><input type="checkbox"></td>
                         </tr>
-                        </tbody>
                     </table>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <script>
-            function filterCourses() {
-                const selectedId = document.getElementById("courseSelect").value;
-                const container = document.getElementById("courseStudents");
-                if (selectedId) {
-                    window.location.href = `/courses?selectedCourseId=${selectedId}`;
-                } else {
-                    container.style.display = 'none';
-                }
-            }
-        </script>
-
-        <section id="grades">
-            <h2>Grade Entry</h2>
-            <select id="gradeCourseSelect" onchange="displayGradeForm()">
-                <option value="">-- Select a course --</option>
-                <option value="math">Math 101</option>
-                <option value="physics">Physics 202</option>
-            </select>
-            <div id="gradeForm" style="margin-top:1rem; display:none">
+            <section id="attendance">
+                <h2>Attendance Entry</h2>
                 <table>
+                    <thead>
                     <tr>
-                        <th>Student</th><th>Midterm</th><th>Final</th><th>Quizzes</th><th>Assignments</th><th>Project</th><th>Attendance</th><th>Finished</th>
+                        <th>Student ID</th>
+                        <th>Student Name</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>2021001</td>
+                        <td>Sarah Ali</td>
+                        <td class="date">2025-05-15</td>
+                        <td>
+                            <input type="checkbox"
+                                   checked
+                                   onchange="toggleStatusColor(this)"
+                                   class="status-toggle">
+                        </td>
                     </tr>
                     <tr>
-                        <td>John Doe</td>
-                        <td><input type="number"></td>
-                        <td><input type="number"></td>
-                        <td><input type="number"></td>
-                        <td><input type="number"></td>
-                        <td><input type="number"></td>
-                        <td><input type="number"></td>
-                        <td><input type="checkbox"></td>
+                        <td>2021002</td>
+                        <td>Omar Khalid</td>
+                        <td class="date">2025-05-15</td>
+                        <td>
+                            <input type="checkbox"
+                                   checked
+                                   onchange="toggleStatusColor(this)"
+                                   class="status-toggle">
+                        </td>
                     </tr>
+                    <tr th:each="record : ${attendanceList}">
+                        <td th:text="${record.studentId}"></td>
+                        <td th:text="${record.studentName}"></td>
+                        <td class="date" th:text="${record.date}"></td>
+                        <td>
+                            <input type="checkbox"
+                                   th:checked="${record.status == 'Present'}"
+                                   onchange="toggleStatusColor(this)"
+                                   class="status-toggle">
+                        </td>
+                    </tr>
+
+                    </tbody>
                 </table>
-            </div>
-        </section>
-
-        <section id="attendance">
-            <h2>Attendance Entry</h2>
-            <table>
-                <thead>
-                <tr>
-                    <th>Student ID</th>
-                    <th>Student Name</th>
-                    <th>Date</th>
-                    <th>Status</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>2021001</td>
-                    <td>Sarah Ali</td>
-                    <td class="date">2025-05-15</td>
-                    <td>
-                        <input type="checkbox"
-                               checked
-                               onchange="toggleStatusColor(this)"
-                               class="status-toggle">
-                    </td>
-                </tr>
-                <tr>
-                    <td>2021002</td>
-                    <td>Omar Khalid</td>
-                    <td class="date">2025-05-15</td>
-                    <td>
-                        <input type="checkbox"
-                               checked
-                               onchange="toggleStatusColor(this)"
-                               class="status-toggle">
-                    </td>
-                </tr>
-                <tr th:each="record : ${attendanceList}">
-                    <td th:text="${record.studentId}"></td>
-                    <td th:text="${record.studentName}"></td>
-                    <td class="date" th:text="${record.date}"></td>
-                    <td>
-                        <input type="checkbox"
-                               th:checked="${record.status == 'Present'}"
-                               onchange="toggleStatusColor(this)"
-                               class="status-toggle">
-                    </td>
-                </tr>
-
-                </tbody>
-            </table>
-        </section>
-    </main>
-</div>
-<script>
-    function showSection(id) {
-        document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-    }
-    function displayCourseStudents() {
-        const select = document.getElementById('courseSelect');
-        document.getElementById('courseStudents').style.display = select.value === "" ? 'none' : 'block';
-    }
-    function displayGradeForm() {
-        const select = document.getElementById('gradeCourseSelect');
-        document.getElementById('gradeForm').style.display = select.value === "" ? 'none' : 'block';
-    }
-    function logout() {
-        alert("Logging out...");
-    }
-</script>
-
-<script>
-    function toggleStatusColor(checkbox) {
-        if (checkbox.checked) {
-            checkbox.classList.remove('red');
-        } else {
-            checkbox.classList.add('red');
+            </section>
+        </main>
+    </div>
+    <script>
+        function showSection(id) {
+            document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
         }
-    }
-</script>
+        function displayCourseStudents() {
+            const select = document.getElementById('courseSelect');
+            document.getElementById('courseStudents').style.display = select.value === "" ? 'none' : 'block';
+        }
+        function displayGradeForm() {
+            const select = document.getElementById('gradeCourseSelect');
+            document.getElementById('gradeForm').style.display = select.value === "" ? 'none' : 'block';
+        }
+        function logout() {
+            alert("Logging out...");
+        }
+    </script>
+
+    <script>
+        function toggleStatusColor(checkbox) {
+            if (checkbox.checked) {
+                checkbox.classList.remove('red');
+            } else {
+                checkbox.classList.add('red');
+            }
+        }
+    </script>
 
 </body>
 </html>

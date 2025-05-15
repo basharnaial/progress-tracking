@@ -103,15 +103,7 @@
     </style>
 </head>
 <body>
-<div class="navbar">
-    <div class="navbar-title">Dashboard</div>
-    <ul>
-        <li class="active">Courses</li>
-        <li>Messages</li>
-        <li>Forums</li>
-    </ul>
-    <a class="add-btn" th:href="@{/courses/add}">Add New Course</a>
-</div>
+    <div th:replace="fragments/navbar :: navbarFragment"></div>
 
 <div class="content">
     <h2>Your courses</h2>
