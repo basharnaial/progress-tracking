@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Attendance Dashboard</title>
+
+</head>
+<body>
+<div class="navbar">
+    <div class="navbar-title">Dashboard</div>
+    <ul>
+        <li>Courses</li>
+        <li>Messages</li>
+        <li class="active">Attendance</li>
+    </ul>
+</div>
+
+<div class="content">
+    <h2>Attendance Overview</h2>
+    select absence students
+    <div class="table-container">
+        <table>
+            <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>2021001</td>
+                <td>Sarah Ali</td>
+                <td class="date">2025-05-15</td>
+                <td class="status-present">Present</td>
+            </tr>
+            <tr>
+                <td>2021002</td>
+                <td>Omar Khalid</td>
+                <td class="date">2025-05-15</td>
+                <td class="status-absent">Absent</td>
+            </tr>
+            <tr th:each="record : ${attendanceList}">
+                <td th:text="${record.studentId}"></td>
+                <td th:text="${record.studentName}"></td>
+                <td class="date" th:text="${record.date}"></td>
+                <td th:classappend="${record.status == 'Present'} ? 'status-present' : 'status-absent'"
+                    th:text="${record.status}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

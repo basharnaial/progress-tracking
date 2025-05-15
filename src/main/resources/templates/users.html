@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Courses Dashboard</title>
-    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <title>User Management</title>
     <style>
         body {
             margin: 0;
@@ -25,22 +24,6 @@
             margin-right: 2rem;
             color: #58a6ff;
             letter-spacing: 0.5px;
-        }
-        .navbar ul {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-            margin: 0;
-            padding: 0;
-        }
-        .navbar ul li {
-            cursor: pointer;
-            font-weight: 500;
-            color: #c9d1d9;
-        }
-        .navbar ul li.active {
-            color: #58a6ff;
-            font-weight: 600;
         }
         .navbar .add-btn {
             margin-left: auto;
@@ -88,67 +71,61 @@
         td {
             color: #c9d1d9;
         }
-        td:nth-child(3),
-        td:nth-child(4),
-        td:nth-child(5) {
-            color: #8b949e;
+        td.role-student {
+            color: #79c0ff;
         }
-        .view-link, .edit-link {
+        td.role-teacher {
+            color: #ffa657;
+        }
+        .edit-link {
             color: #58a6ff;
             text-decoration: none;
         }
-        .view-link:hover, .edit-link:hover {
+        .edit-link:hover {
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
 <div class="navbar">
-    <div class="navbar-title">Dashboard</div>
-    <ul>
-        <li class="active">Courses</li>
-        <li>Messages</li>
-        <li>Forums</li>
-    </ul>
-    <a class="add-btn" th:href="@{/courses/add}">Add New Course</a>
+    <div class="navbar-title">User Management</div>
+    <a class="add-btn" href="#">+ Add User</a>
 </div>
 
 <div class="content">
-    <h2>Your courses</h2>
+    <h2>Manage Users</h2>
     <div class="table-container">
         <table>
             <thead>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Description</th>
-                <th>Teacher</th>
-                <th>Enrolled</th>
+                <th>Email</th>
+                <th>Role</th>
                 <th>Actions</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <td>101</td>
-                <td><a class="view-link" href="#">Introduction to Java</a></td>
-                <td>Basic Java programming concepts</td>
-                <td>John Smith</td>
-                <td>25</td>
+                <td>U001</td>
+                <td>Ali Saleh</td>
+                <td>ali@example.com</td>
+                <td class="role-teacher">Teacher</td>
                 <td><a class="edit-link" href="#">Edit</a></td>
             </tr>
-
-            <tr th:each="course : ${courses}">
-                <td th:text="${course.id}"></td>
-                <td>
-                    <a class="view-link" th:href="@{/courses/{id}/students(id=${course.id})}"
-                       th:text="${course.name}"></a>
-                </td>
-                <td th:text="${course.description}"></td>
-                <td th:text="${course.teacher.firstName + ' ' + course.teacher.lastName}"></td>
-<!--                <td th:text="${course.enrolledStudents.size()}"></td>-->
-                <td>
-                    <a class="edit-link" th:href="@{/courses/{id}/edit(id=${course.id})}">Edit</a>
-                </td>
+            <tr>
+                <td>U002</td>
+                <td>Lina Ahmed</td>
+                <td>lina@example.com</td>
+                <td class="role-student">Student</td>
+                <td><a class="edit-link" href="#">Edit</a></td>
+            </tr>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:classappend="${user.role == 'Student'} ? 'role-student' : 'role-teacher'" th:text="${user.role}"></td>
+                <td><a class="edit-link" th:href="@{/users/{id}/edit(id=${user.id})}">Edit</a></td>
             </tr>
             </tbody>
         </table>
