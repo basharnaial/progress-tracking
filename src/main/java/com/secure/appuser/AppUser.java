@@ -1,5 +1,7 @@
 package com.secure.appuser;
 
+import com.secure.course.Course;
+import com.secure.model.StudentCourse;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -8,6 +10,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @EqualsAndHashCode
@@ -35,6 +39,26 @@ public class AppUser implements UserDetails {
     private AppUserRole appUserRole;
     private Boolean locked = false;
     private Boolean enabled = false;
+
+    /**
+     * All the courses this user is enrolled in (as a student).
+     */
+    @OneToMany(
+            mappedBy = "student",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<StudentCourse> studentEnrollments = new HashSet<>();
+
+    /**
+     * All the courses this user is teaching (as a teacher).
+     */
+    @OneToMany(
+            mappedBy = "teacher",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<Course> coursesTaught = new HashSet<>();
 
     public AppUser(String firstName,
                    String lastName,
