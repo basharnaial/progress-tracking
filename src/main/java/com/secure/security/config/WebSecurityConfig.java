@@ -27,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 // Allow public access to login and static resources
-                .antMatchers("/login", "/css/**").permitAll()
+                .antMatchers("/login", "/css/**", "/css/pro.css").permitAll()
                 // Only teachers can view the registration form and call the API
                 .antMatchers("/register/**", "/api/v1/registration/**").hasAuthority("TEACHER")
                 // Courses listing is public
