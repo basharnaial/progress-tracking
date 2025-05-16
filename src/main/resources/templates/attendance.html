@@ -3,17 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Attendance Dashboard</title>
-
+    <link rel="stylesheet" th:href="@{/css/pro.css}">
 </head>
 <body>
-<div class="navbar">
-    <div class="navbar-title">Dashboard</div>
-    <ul>
-        <li>Courses</li>
-        <li>Messages</li>
-        <li class="active">Attendance</li>
-    </ul>
-</div>
+    <div th:replace="fragments/navbar :: navbarFragment"></div>
 
 <div class="content">
     <h2>Attendance Overview</h2>
