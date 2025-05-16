@@ -33,18 +33,25 @@ public class RegistrationService {
             throw new IllegalStateException("email not valid");
         }
 
+        AppUserRole role;
+        try {
+            role = AppUserRole.valueOf(request.getRole().toUpperCase());
+        } catch (Exception ex) {
+            throw new IllegalStateException("Invalid role: " + request.getRole());
+        }
+
         String token = appUserService.signUpUser(
                 new AppUser(
                         request.getFirstName(),
                         request.getLastName(),
                         request.getEmail(),
                         request.getPassword(),
-                        AppUserRole.USER
+                        role
 
                 )
         );
 
-        String link = "http://localhost:8080/api/v1/registration/confirm?token=" + token;
+        String link = "http://localhost:8080/register/confirm?token=" + token;
         emailSender.send(
                 request.getEmail(),
                 buildEmail(request.getFirstName(), link));

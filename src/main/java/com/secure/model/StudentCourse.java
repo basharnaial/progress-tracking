@@ -15,15 +15,7 @@ import java.time.LocalDate;
 @Entity
 public class StudentCourse {
     @Id
-    @SequenceGenerator(
-            name = "enrollment_sequence",
-            sequenceName = "enrollment_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "enrollment_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)

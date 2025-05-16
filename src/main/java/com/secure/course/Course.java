@@ -14,15 +14,7 @@ import java.util.Set;
 @Entity
 public class Course {
     @Id
-    @SequenceGenerator(
-            name = "course_sequence", // wtf
-            sequenceName = "course_sequence", // wtf
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "course_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
