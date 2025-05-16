@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Register New User</title>
+    <style>
+        body { background-color: #000; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .form-box { background: #0047AB; padding: 2rem; border-radius: 12px; box-shadow: 0 0 25px rgba(0,0,0,0.6); width: 100%; max-width: 400px; }
+        h1 { text-align: center; margin-bottom: 1.5rem; }
+        label { display: block; margin-top: 1rem; }
+        input[type="text"], input[type="email"], input[type="password"] { width: 100%; padding: 0.75rem; margin-top: 0.5rem; border: none; border-radius: 4px; font-size: 1rem; }
+        .roles { display: flex; gap: 1rem; margin-top: 0.5rem; }
+        .roles label { margin: 0; display: flex; align-items: center; }
+        button { width: 100%; padding: 0.75rem; margin-top: 2rem; background-color: black; color: white; font-size: 1rem; border: 1px solid white; border-radius: 4px; cursor: pointer; }
+        button:hover { background-color: #111; }
+    </style>
+</head>
+<body>
+<form class="form-box" th:action="@{/register}" method="post" th:object="${registrationRequest}">
+    <h1>Register User</h1>
+
+    <label for="firstName">First Name</label>
+    <input type="text" id="firstName" th:field="*{firstName}" placeholder="First Name" required />
+
+    <label for="lastName">Last Name</label>
+    <input type="text" id="lastName" th:field="*{lastName}" placeholder="Last Name" required />
+
+    <label for="email">Email</label>
+    <input type="email" id="email" th:field="*{email}" placeholder="Email" required />
+
+    <label for="password">Password</label>
+    <input type="password" id="password" th:field="*{password}" placeholder="Password" required />
+
+    <label>Role</label>
+    <div class="roles">
+        <label><input type="radio" th:field="*{role}" value="TEACHER" /> Teacher</label>
+        <label><input type="radio" th:field="*{role}" value="STUDENT" /> Student</label>
+    </div>
+
+    <button type="submit">Register</button>
+</form>
+</body>
+</html>
