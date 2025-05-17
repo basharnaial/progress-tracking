@@ -4,8 +4,8 @@ spring:
 
   datasource:
     url: jdbc:mysql://localhost:3306/progress_tracking
-    username: root
-    password: 20amlDqWs
+    username: progress_user
+    password: password
 
   jpa:
     hibernate:

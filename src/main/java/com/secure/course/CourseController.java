@@ -16,6 +16,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import com.secure.appuser.AppUserRepository;
 import com.secure.appuser.AppUserRole;
+import org.springframework.http.ResponseEntity;
 
 @Controller
 @RequestMapping("/courses")
@@ -110,6 +111,103 @@ public class CourseController {
                 result.add(row);
             }
             return result;
+        }
+
+        @GetMapping("/{courseId}/students-for-grading")
+        public List<Map<String, Object>> getStudentsForGrading(@PathVariable Long courseId) {
+            List<StudentCourse> enrollments = studentCourseRepository.findByCourseId(courseId);
+            return enrollments.stream().map(sc -> {
+                Map<String, Object> map = new HashMap<>();
+                map.put("studentId", sc.getStudent().getId());
+                map.put("name", sc.getStudent().getFirstName() + " " + sc.getStudent().getLastName());
+                map.put("midterm", sc.getMidterm());
+                map.put("finalExam", sc.getFinalExam());
+                map.put("assignments", sc.getAssignments());
+                map.put("quizzes", sc.getQuizzes());
+                map.put("project", sc.getProject());
+                map.put("attendance", sc.getAttendance());
+                map.put("finished", sc.getFinished());
+                return map;
+            }).collect(Collectors.toList());
+        }
+
+        @PostMapping("/{courseId}/grades")
+        public ResponseEntity<?> updateAllStudentGrades(
+            @PathVariable Long courseId,
+            @RequestBody List<Map<String, Object>> gradesList
+        ) {
+            try {
+                List<StudentCourse> enrollments = studentCourseRepository.findByCourseId(courseId);
+                Map<Long, StudentCourse> enrollmentMap = enrollments.stream()
+                    .collect(Collectors.toMap(sc -> sc.getStudent().getId(), sc -> sc));
+
+                for (Map<String, Object> entry : gradesList) {
+                    Long studentId = ((Number) entry.get("studentId")).longValue();
+                    Map<String, Object> grades = (Map<String, Object>) entry.get("grades");
+                    
+                    StudentCourse enrollment = enrollmentMap.get(studentId);
+                    if (enrollment == null) {
+                        throw new RuntimeException("Enrollment not found for student: " + studentId);
+                    }
+
+                    updateGrades(enrollment, grades);
+                    studentCourseRepository.save(enrollment);
+                }
+                return ResponseEntity.ok().build();
+            } catch (Exception e) {
+                return ResponseEntity.badRequest().body(e.getMessage());
+            }
+        }
+
+        @PostMapping("/{courseId}/grades/{studentId}")
+        public ResponseEntity<?> updateStudentGrades(
+            @PathVariable Long courseId,
+            @PathVariable Long studentId,
+            @RequestBody Map<String, Object> grades
+        ) {
+            try {
+                StudentCourse enrollment = studentCourseRepository.findByCourseId(courseId).stream()
+                    .filter(sc -> sc.getStudent().getId().equals(studentId))
+                    .findFirst()
+                    .orElseThrow(() -> new RuntimeException("Enrollment not found"));
+
+                updateGrades(enrollment, grades);
+                studentCourseRepository.save(enrollment);
+                return ResponseEntity.ok().build();
+            } catch (Exception e) {
+                return ResponseEntity.badRequest().body(e.getMessage());
+            }
+        }
+
+        private void updateGrades(StudentCourse enrollment, Map<String, Object> grades) {
+            if (grades.containsKey("midterm")) {
+                Object value = grades.get("midterm");
+                enrollment.setMidterm(value instanceof Number ? ((Number) value).intValue() : 0);
+            }
+            if (grades.containsKey("finalExam")) {
+                Object value = grades.get("finalExam");
+                enrollment.setFinalExam(value instanceof Number ? ((Number) value).intValue() : 0);
+            }
+            if (grades.containsKey("assignments")) {
+                Object value = grades.get("assignments");
+                enrollment.setAssignments(value instanceof Number ? ((Number) value).intValue() : 0);
+            }
+            if (grades.containsKey("quizzes")) {
+                Object value = grades.get("quizzes");
+                enrollment.setQuizzes(value instanceof Number ? ((Number) value).intValue() : 0);
+            }
+            if (grades.containsKey("project")) {
+                Object value = grades.get("project");
+                enrollment.setProject(value instanceof Number ? ((Number) value).intValue() : 0);
+            }
+            if (grades.containsKey("attendance")) {
+                Object value = grades.get("attendance");
+                enrollment.setAttendance(value instanceof Number ? ((Number) value).doubleValue() : 0.0);
+            }
+            if (grades.containsKey("finished")) {
+                Object value = grades.get("finished");
+                enrollment.setFinished(value instanceof Boolean ? (Boolean) value : false);
+            }
         }
     }
 

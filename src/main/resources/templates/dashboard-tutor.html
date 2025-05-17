@@ -180,27 +180,41 @@
 
             <section id="grades">
                 <h2>Grade Entry</h2>
-                <select id="gradeCourseSelect" onchange="displayGradeForm()">
-                    <option value="">-- Select a course --</option>
-                    <option value="math">Math 101</option>
-                    <option value="physics">Physics 202</option>
-                </select>
-                <div id="gradeForm" style="margin-top:1rem; display:none">
-                    <table>
-                        <tr>
-                            <th>Student</th><th>Midterm</th><th>Final</th><th>Quizzes</th><th>Assignments</th><th>Project</th><th>Attendance</th><th>Finished</th>
-                        </tr>
-                        <tr>
-                            <td>John Doe</td>
-                            <td><input type="number"></td>
-                            <td><input type="number"></td>
-                            <td><input type="number"></td>
-                            <td><input type="number"></td>
-                            <td><input type="number"></td>
-                            <td><input type="number"></td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                    </table>
+                <div class="grade-entry-container">
+                    <div class="course-selector">
+                        <label for="gradeCourseSelect">Select Course:</label>
+                        <select id="gradeCourseSelect" onchange="loadStudentsForGrading()">
+                            <option value="">-- Select a course --</option>
+                            <option th:each="course : ${courses}" th:value="${course.id}" th:text="${course.name}"></option>
+                        </select>
+                    </div>
+                    
+                    <div id="gradeForm" style="margin-top: 2rem; display: none;">
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Student ID</th>
+                                        <th>Name</th>
+                                        <th>Midterm</th>
+                                        <th>Final Exam</th>
+                                        <th>Assignments</th>
+                                        <th>Quizzes</th>
+                                        <th>Project</th>
+                                        <th>Attendance</th>
+                                        <th>Finished</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="gradeTableBody">
+                                    <!-- Filled by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="form-actions" style="margin-top: 1rem;">
+                            <button onclick="saveAllGrades()" class="primary">Save All Grades</button>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -305,6 +319,153 @@
             }
         });
         return false;
+    }
+    </script>
+
+    <script>
+    function loadStudentsForGrading() {
+        const courseId = document.getElementById('gradeCourseSelect').value;
+        const form = document.getElementById('gradeForm');
+        const tbody = document.getElementById('gradeTableBody');
+        tbody.innerHTML = '';
+        
+        if (!courseId) {
+            form.style.display = 'none';
+            return;
+        }
+
+        fetch(`/api/courses/${courseId}/students-for-grading`)
+            .then(res => res.json())
+            .then(data => {
+                data.forEach(student => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${student.studentId}</td>
+                        <td>${student.name}</td>
+                        <td><input type="number" min="0" max="100" step="0.1" 
+                            value="${student.midterm || ''}" 
+                            onchange="updateGrade(${student.studentId}, 'midterm', this.value)"></td>
+                        <td><input type="number" min="0" max="100" step="0.1" 
+                            value="${student.finalExam || ''}" 
+                            onchange="updateGrade(${student.studentId}, 'finalExam', this.value)"></td>
+                        <td><input type="number" min="0" max="100" step="0.1" 
+                            value="${student.assignments || ''}" 
+                            onchange="updateGrade(${student.studentId}, 'assignments', this.value)"></td>
+                        <td><input type="number" min="0" max="100" step="0.1" 
+                            value="${student.quizzes || ''}" 
+                            onchange="updateGrade(${student.studentId}, 'quizzes', this.value)"></td>
+                        <td><input type="number" min="0" max="100" step="0.1" 
+                            value="${student.project || ''}" 
+                            onchange="updateGrade(${student.studentId}, 'project', this.value)"></td>
+                        <td><input type="number" min="0" max="100" step="0.1" 
+                            value="${student.attendance || ''}" 
+                            onchange="updateGrade(${student.studentId}, 'attendance', this.value)"></td>
+                        <td><input type="checkbox" 
+                            ${student.finished ? 'checked' : ''} 
+                            onchange="updateGrade(${student.studentId}, 'finished', this.checked)"></td>
+                        <td>
+                            <button onclick="saveStudentGrade(${student.studentId})" class="secondary">Save</button>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                });
+                form.style.display = '';
+            });
+    }
+
+    let pendingGrades = new Map();
+
+    function updateGrade(studentId, field, value) {
+        if (!pendingGrades.has(studentId)) {
+            pendingGrades.set(studentId, {});
+        }
+        // Convert string values to appropriate types
+        if (field === 'finished') {
+            pendingGrades.get(studentId)[field] = value;
+        } else {
+            // Convert to number, use 0 if empty or invalid
+            const numValue = value === '' ? 0 : parseFloat(value);
+            pendingGrades.get(studentId)[field] = isNaN(numValue) ? 0 : numValue;
+        }
+    }
+
+    function saveAllGrades() {
+        const courseId = document.getElementById('gradeCourseSelect').value;
+        if (pendingGrades.size === 0) {
+            alert('No changes to save');
+            return;
+        }
+
+        // Convert Map to array of objects with proper structure
+        const gradesData = Array.from(pendingGrades.entries()).map(([studentId, grades]) => ({
+            studentId: parseInt(studentId),
+            grades: Object.fromEntries(
+                Object.entries(grades).map(([key, value]) => [
+                    key,
+                    key === 'finished' ? value : parseFloat(value)
+                ])
+            )
+        }));
+
+        fetch(`/api/courses/${courseId}/grades`, {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(gradesData)
+        })
+        .then(res => {
+            if (res.ok) {
+                pendingGrades.clear();
+                alert('All grades saved successfully!');
+                loadStudentsForGrading();
+            } else {
+                res.text().then(text => {
+                    alert('Error saving grades: ' + text);
+                });
+            }
+        })
+        .catch(error => {
+            alert('Error saving grades: ' + error.message);
+        });
+    }
+
+    function saveStudentGrade(studentId) {
+        const courseId = document.getElementById('gradeCourseSelect').value;
+        const grades = pendingGrades.get(studentId);
+        if (!grades) return;
+
+        // Convert grades to proper numeric values
+        const processedGrades = Object.fromEntries(
+            Object.entries(grades).map(([key, value]) => [
+                key,
+                key === 'finished' ? value : parseFloat(value)
+            ])
+        );
+
+        fetch(`/api/courses/${courseId}/grades/${studentId}`, {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(processedGrades)
+        })
+        .then(res => {
+            if (res.ok) {
+                pendingGrades.delete(studentId);
+                alert('Grades saved successfully!');
+                loadStudentsForGrading();
+            } else {
+                res.text().then(text => {
+                    alert('Error saving grades: ' + text);
+                });
+            }
+        })
+        .catch(error => {
+            alert('Error saving grades: ' + error.message);
+        });
     }
     </script>
 
