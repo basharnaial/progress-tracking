@@ -11,6 +11,14 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.filter.OncePerRequestFilter;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @Configuration
 @AllArgsConstructor
@@ -20,6 +28,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final AppUserService appUserService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    private RecaptchaConfig.RecaptchaService recaptchaService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -39,6 +50,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .defaultSuccessUrl("/dashboard")
                 .permitAll();
+
+        // Add reCAPTCHA filter
+        http.addFilterBefore(new OncePerRequestFilter() {
+            @Override
+            protected void doFilterInternal(HttpServletRequest request,
+                                          HttpServletResponse response,
+                                          FilterChain filterChain) throws ServletException, IOException {
+                if (request.getMethod().equals("POST") && request.getRequestURI().equals("/login")) {
+                    String recaptchaResponse = request.getParameter("g-recaptcha-response");
+                    if (recaptchaResponse == null || !recaptchaService.verifyRecaptcha(recaptchaResponse)) {
+                        response.sendRedirect("/login?error=captcha");
+                        return;
+                    }
+                }
+                filterChain.doFilter(request, response);
+            }
+        }, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Override
