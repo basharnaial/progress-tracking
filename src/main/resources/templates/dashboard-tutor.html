@@ -312,10 +312,10 @@
             body: JSON.stringify(absentIds)
         }).then(res => {
             if (res.ok) {
-                alert('Attendance saved!');
+                showNotification('Attendance saved!', 'success');
                 loadAttendanceStudents();
             } else {
-                alert('Error saving attendance');
+                showNotification('Error saving attendance', 'error');
             }
         });
         return false;
@@ -392,7 +392,7 @@
     function saveAllGrades() {
         const courseId = document.getElementById('gradeCourseSelect').value;
         if (pendingGrades.size === 0) {
-            alert('No changes to save');
+            showNotification('No changes to save');
             return;
         }
 
@@ -418,16 +418,16 @@
         .then(res => {
             if (res.ok) {
                 pendingGrades.clear();
-                alert('All grades saved successfully!');
+                showNotification('All grades saved successfully!', 'success');
                 loadStudentsForGrading();
             } else {
                 res.text().then(text => {
-                    alert('Error saving grades: ' + text);
+                    showNotification('Error saving grades: ' + text, 'error');
                 });
             }
         })
         .catch(error => {
-            alert('Error saving grades: ' + error.message);
+            showNotification('Error saving grades: ' + error.message, 'error');
         });
     }
 
@@ -455,19 +455,57 @@
         .then(res => {
             if (res.ok) {
                 pendingGrades.delete(studentId);
-                alert('Grades saved successfully!');
+                showNotification('Grades saved successfully!', 'success');
                 loadStudentsForGrading();
             } else {
                 res.text().then(text => {
-                    alert('Error saving grades: ' + text);
+                    showNotification('Error saving grades: ' + text, 'error');
                 });
             }
         })
         .catch(error => {
-            alert('Error saving grades: ' + error.message);
+            showNotification('Error saving grades: ' + error.message, 'error');
         });
     }
     </script>
+
+    <!-- Notification container -->
+    <div id="notification" style="position:fixed;top:32px;right:32px;z-index:9999;min-width:260px;max-width:350px;display:none;"></div>
+
+    <script>
+    function showNotification(message, type = 'success') {
+        const notification = document.getElementById('notification');
+        notification.innerHTML = `<div class="notify-box ${type}">${message}</div>`;
+        notification.style.display = 'block';
+        setTimeout(() => {
+            notification.style.display = 'none';
+        }, 3000);
+    }
+    </script>
+    <style>
+    .notify-box {
+        background: #fff;
+        color: #222;
+        border-radius: 8px;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+        padding: 1.1rem 1.5rem;
+        font-size: 1.1rem;
+        font-weight: 500;
+        margin-bottom: 8px;
+        border-left: 6px solid #38a169;
+        opacity: 0;
+        animation: fadeInOut 3s forwards;
+        position: relative;
+    }
+    .notify-box.success { border-color: #38a169; }
+    .notify-box.error { border-color: #e53e3e; }
+    @keyframes fadeInOut {
+        0% { opacity: 0; transform: translateY(-20px); }
+        10% { opacity: 1; transform: translateY(0); }
+        90% { opacity: 1; transform: translateY(0); }
+        100% { opacity: 0; transform: translateY(-20px); }
+    }
+    </style>
 
 </body>
 </html>
