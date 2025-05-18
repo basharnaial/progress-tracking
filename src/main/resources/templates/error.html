@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Access Denied</title>
+    <link rel="stylesheet" th:href="@{/css/pro.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        body {
+            background: #1a202c;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .error-container {
+            text-align: center;
+            background: rgba(45, 55, 72, 0.9);
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .error-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4299e1, #48bb78);
+        }
+
+        .error-icon {
+            font-size: 5rem;
+            color: #f56565;
+            margin-bottom: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        .error-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .error-message {
+            font-size: 1.2rem;
+            color: #e2e8f0;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .error-details {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            font-family: monospace;
+            color: #a0aec0;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: #4299e1;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: #2b6cb0;
+            transform: translateY(-2px);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .matrix-line {
+            position: absolute;
+            width: 2px;
+            height: 100vh;
+            background: linear-gradient(180deg, rgba(0,255,0,0) 0%, #39ff14 60%, rgba(0,255,0,0.1) 100%);
+            animation: matrixFall 3.5s linear infinite;
+        }
+
+        @keyframes matrixFall {
+            0% { transform: translateY(-100vh); opacity: 0.25; }
+            10% { opacity: 0.5; }
+            80% { opacity: 0.5; }
+            100% { transform: translateY(100vh); opacity: 0.1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix">
+        <span class="matrix-line" style="left:8%;animation-delay:0s;"></span>
+        <span class="matrix-line" style="left:18%;animation-delay:1.2s;"></span>
+        <span class="matrix-line" style="left:28%;animation-delay:2.1s;"></span>
+        <span class="matrix-line" style="left:38%;animation-delay:0.7s;"></span>
+        <span class="matrix-line" style="left:48%;animation-delay:2.7s;"></span>
+        <span class="matrix-line" style="left:58%;animation-delay:1.7s;"></span>
+        <span class="matrix-line" style="left:68%;animation-delay:0.5s;"></span>
+        <span class="matrix-line" style="left:78%;animation-delay:2.9s;"></span>
+        <span class="matrix-line" style="left:88%;animation-delay:1.5s;"></span>
+    </div>
+
+    <div class="error-container">
+        <i class="fas fa-shield-alt error-icon"></i>
+        <h1 class="error-title">Access Denied</h1>
+        <p class="error-message">
+            Sorry, you don't have permission to access this page. 
+            Please make sure you're logged in with the correct role.
+        </p>
+        <div class="error-details">
+            <div th:text="${status}">Status</div>
+            <div th:text="${error}">Error</div>
+            <div th:text="${timestamp}">Timestamp</div>
+        </div>
+        <a th:href="@{/dashboard-student}" class="back-button">
+            <i class="fas fa-arrow-left"></i> Return to Dashboard
+        </a>
+    </div>
+</body>
+</html> 
