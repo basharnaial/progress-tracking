@@ -2,17 +2,15 @@
     <div class="navbar">
         <a class="navbar-title" th:href="@{/dashboard}">Dashboard</a>
         <ul>
-            <li th:classappend="${activeTab} == 'courses' ? 'active'">
-                <a th:href="@{/courses}">Courses</a>
-            </li>
+
+
+
             <li th:classappend="${activeTab} == 'users' ? 'active'">
                 <a th:href="@{/users}">Users</a>
             </li>
-            
+
         </ul>
         <div class="navbar-right">
-            <a class="register-btn" th:href="@{/register}">Register Account</a>
-            <a class="add-btn" th:href="@{/courses/add}">Add New Course</a>
         </div>
     </div>
-</div> 
+</div>

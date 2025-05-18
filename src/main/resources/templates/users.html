@@ -8,8 +8,11 @@
 <body>
     <div th:replace="fragments/navbar :: navbarFragment"></div>
 
+
     <div class="content">
         <h2>Manage Users</h2>
+        <a href="/register" class="register-btn" >Register New User</a>
+
         <div class="table-container">
             <table>
                 <thead>
@@ -21,20 +24,6 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>U001</td>
-                    <td>Ali Saleh</td>
-                    <td>ali@example.com</td>
-                    <td class="role-teacher">Teacher</td>
-                    <td><a class="edit-link" href="#">Edit</a></td>
-                </tr>
-                <tr>
-                    <td>U002</td>
-                    <td>Lina Ahmed</td>
-                    <td>lina@example.com</td>
-                    <td class="role-student">Student</td>
-                    <td><a class="edit-link" href="#">Edit</a></td>
-                </tr>
                 <tr th:each="user : ${users}">
                     <td th:text="${user.id}"></td>
                     <td th:text="${user.firstName + ' ' + user.lastName}"></td>

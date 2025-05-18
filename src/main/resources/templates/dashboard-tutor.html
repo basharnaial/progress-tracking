@@ -200,22 +200,22 @@
 </head>
 <body>
     <div th:replace="fragments/navbar :: navbarFragment"></div>
-    <div class="layout">
-        <aside>
+<div class="layout">
+    <aside>
             <h3><i class="fas fa-chalkboard-teacher"></i> Teacher Menu</h3>
             <button onclick="showSection('overview')"><i class="fas fa-chart-line"></i> Dashboard Overview</button>
             <button onclick="showSection('courses')"><i class="fas fa-book"></i> Courses</button>
             <button onclick="showSection('grades')"><i class="fas fa-graduation-cap"></i> Grade Entry</button>
             <button onclick="showSection('attendance')"><i class="fas fa-user-check"></i> Attendance</button>
             <button onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
-        </aside>
-        <main>
+    </aside>
+    <main>
             <div class="dashboard-header">
                 <h2>Welcome Back, Teacher!</h2>
                 <p>Here's an overview of your teaching progress</p>
             </div>
-            
-            <section id="overview" class="active">
+
+        <section id="overview" class="active">
                 <div class="overview-cards">
                     <div class="overview-card">
                         <div class="icon students">
@@ -270,7 +270,7 @@
                             <div class="label">Most Active Course</div>
                             <div id="mostActiveCourse" class="value">...</div>
                         </div>
-                    </div>
+                </div>
                 </div>
 
                 <div class="gpa-table-container">
@@ -295,26 +295,61 @@
                                 <!-- Filled by JS -->
                             </tbody>
                         </table>
-                    </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section id="grades">
+        <section id="courses">
+                <div class="grade-entry-container">
+                    <h2><i class="fas fa-book"></i> All Courses</h2>
+                    <a class="add-btn" href="/courses/add">Add New Course</a>
+
+                    <div class="table-container">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                                    <th>Enrolled Students</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                                <tr th:each="course : ${courses}">
+                            <td th:text="${course.id}"></td>
+                            <td>
+                                <a class="view-link" th:href="@{/courses/{id}/students(id=${course.id})}"
+                                   th:text="${course.name}"></a>
+                            </td>
+                            <td th:text="${course.description}"></td>
+                                    <td th:text="${course.enrollments != null ? course.enrollments.size() : 0}"></td>
+                            <td>
+                                <a class="edit-link" th:href="@{/courses/{id}/edit(id=${course.id})}">Edit</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="grades">
                 <div class="grade-entry-container">
                     <h2><i class="fas fa-edit"></i> Grade Entry</h2>
                     <div class="course-selector">
                         <label for="gradeCourseSelect">Select Course:</label>
                         <select id="gradeCourseSelect" onchange="loadStudentsForGrading()">
-                            <option value="">-- Select a course --</option>
+                <option value="">-- Select a course --</option>
                             <option th:each="course : ${courses}" th:value="${course.id}" th:text="${course.name}"></option>
-                        </select>
+            </select>
                     </div>
-                    
+
                     <div id="gradeForm" style="display: none;">
                         <div class="table-container">
-                            <table>
+                <table>
                                 <thead>
-                                    <tr>
+                    <tr>
                                         <th>Student ID</th>
                                         <th>Name</th>
                                         <th>Midterm</th>
@@ -325,12 +360,12 @@
                                         <th>Attendance</th>
                                         <th>Finished</th>
                                         <th>Actions</th>
-                                    </tr>
+                    </tr>
                                 </thead>
                                 <tbody id="gradeTableBody">
                                     <!-- Filled by JS -->
                                 </tbody>
-                            </table>
+                </table>
                         </div>
                         <div class="form-actions">
                             <button onclick="saveAllGrades()" class="primary">
@@ -338,10 +373,10 @@
                             </button>
                         </div>
                     </div>
-                </div>
-            </section>
+            </div>
+        </section>
 
-            <section id="attendance">
+        <section id="attendance">
                 <div class="grade-entry-container">
                     <h2><i class="fas fa-user-check"></i> Attendance Entry</h2>
                     <div class="course-selector">
@@ -353,19 +388,19 @@
                     </div>
                     <form id="attendanceForm" style="display:none" onsubmit="return saveAttendance(event)">
                         <div class="table-container">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Student ID</th>
-                                        <th>Student Name</th>
-                                        <th>Date</th>
+            <table>
+                <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Student Name</th>
+                    <th>Date</th>
                                         <th>Status (Absent)</th>
-                                    </tr>
-                                </thead>
+                </tr>
+                </thead>
                                 <tbody id="attendanceTableBody">
                                     <!-- Filled by JS -->
-                                </tbody>
-                            </table>
+                </tbody>
+            </table>
                         </div>
                         <div class="form-actions">
                             <button type="submit" class="primary">
@@ -374,18 +409,18 @@
                         </div>
                     </form>
                 </div>
-            </section>
-        </main>
-    </div>
+        </section>
+    </main>
+</div>
 
     <!-- Notification container -->
     <div id="notification" style="position:fixed;top:32px;right:32px;z-index:9999;min-width:260px;max-width:350px;display:none;"></div>
 
-    <script>
-        function showSection(id) {
-            document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-        }
+<script>
+    function showSection(id) {
+        document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+    }
 
         function logout() {
             window.location.href = "/logout";
@@ -459,7 +494,7 @@
             const form = document.getElementById('gradeForm');
             const tbody = document.getElementById('gradeTableBody');
             tbody.innerHTML = '';
-            
+
             if (!courseId) {
                 form.style.display = 'none';
                 return;
@@ -473,26 +508,26 @@
                         row.innerHTML = `
                             <td>${student.studentId}</td>
                             <td>${student.name}</td>
-                            <td><input type="number" min="0" max="100" step="0.1" 
-                                value="${student.midterm || ''}" 
+                            <td><input type="number" min="0" max="100" step="0.1"
+                                value="${student.midterm || ''}"
                                 onchange="updateGrade(${student.studentId}, 'midterm', this.value)"></td>
-                            <td><input type="number" min="0" max="100" step="0.1" 
-                                value="${student.finalExam || ''}" 
+                            <td><input type="number" min="0" max="100" step="0.1"
+                                value="${student.finalExam || ''}"
                                 onchange="updateGrade(${student.studentId}, 'finalExam', this.value)"></td>
-                            <td><input type="number" min="0" max="100" step="0.1" 
-                                value="${student.assignments || ''}" 
+                            <td><input type="number" min="0" max="100" step="0.1"
+                                value="${student.assignments || ''}"
                                 onchange="updateGrade(${student.studentId}, 'assignments', this.value)"></td>
-                            <td><input type="number" min="0" max="100" step="0.1" 
-                                value="${student.quizzes || ''}" 
+                            <td><input type="number" min="0" max="100" step="0.1"
+                                value="${student.quizzes || ''}"
                                 onchange="updateGrade(${student.studentId}, 'quizzes', this.value)"></td>
-                            <td><input type="number" min="0" max="100" step="0.1" 
-                                value="${student.project || ''}" 
+                            <td><input type="number" min="0" max="100" step="0.1"
+                                value="${student.project || ''}"
                                 onchange="updateGrade(${student.studentId}, 'project', this.value)"></td>
-                            <td><input type="number" min="0" max="100" step="0.1" 
-                                value="${student.attendance || ''}" 
+                            <td><input type="number" min="0" max="100" step="0.1"
+                                value="${student.attendance || ''}"
                                 onchange="updateGrade(${student.studentId}, 'attendance', this.value)"></td>
-                            <td><input type="checkbox" 
-                                ${student.finished ? 'checked' : ''} 
+                            <td><input type="checkbox"
+                                ${student.finished ? 'checked' : ''}
                                 onchange="updateGrade(${student.studentId}, 'finished', this.checked)"></td>
                             <td>
                                 <button onclick="saveStudentGrade(${student.studentId})" class="secondary">Save</button>
@@ -537,7 +572,7 @@
 
             fetch(`/api/courses/${courseId}/grades`, {
                 method: 'POST',
-                headers: { 
+                headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
@@ -573,7 +608,7 @@
 
             fetch(`/api/courses/${courseId}/grades/${studentId}`, {
                 method: 'POST',
-                headers: { 
+                headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
@@ -584,7 +619,7 @@
                     pendingGrades.delete(studentId);
                     showNotification('Grades saved successfully!', 'success');
                     loadStudentsForGrading();
-                } else {
+        } else {
                     res.text().then(text => {
                         showNotification('Error saving grades: ' + text, 'error');
                     });
@@ -637,7 +672,7 @@
                     loadAttendanceStudents();
                 } else {
                     showNotification('Error saving attendance', 'error');
-                }
+        }
             });
             return false;
         }
@@ -646,7 +681,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             loadDashboardOverview();
         });
-    </script>
+</script>
 
     <style>
         @keyframes fadeInUp {

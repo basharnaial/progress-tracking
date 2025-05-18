@@ -27,13 +27,13 @@ public class CourseController {
     @Autowired
     private AppUserRepository appUserRepository;
 
-    @GetMapping("/courses")
-    public String listCourses(Model model) {
-        List<Course> courses = courseRepository.findAll();
-        model.addAttribute("courses", courses);
-        model.addAttribute("activeTab", "courses");
-        return "courses";
-    }
+//    @GetMapping("/courses")
+//    public String listCourses(Model model) {
+//        List<Course> courses = courseRepository.findAll();
+//        model.addAttribute("courses", courses);
+//        model.addAttribute("activeTab", "courses");
+//        return "courses";
+//    }
 
     @GetMapping("/dashboard")
     public String dashboard(Model model) {
