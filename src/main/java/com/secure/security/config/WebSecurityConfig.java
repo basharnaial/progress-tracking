@@ -19,6 +19,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @AllArgsConstructor
@@ -48,7 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/dashboard")
+                .successHandler(customAuthenticationSuccessHandler())
                 .permitAll();
 
         // Add reCAPTCHA filter
@@ -82,4 +84,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         provider.setUserDetailsService(appUserService);
         return provider;
     }
+
+    @Bean
+    public AuthenticationSuccessHandler customAuthenticationSuccessHandler() {
+        return (request, response, authentication) -> {
+            Object principal = authentication.getPrincipal();
+            if (principal instanceof com.secure.appuser.AppUser) {
+                com.secure.appuser.AppUser user = (com.secure.appuser.AppUser) principal;
+                if (user.getAppUserRole() != null && user.getAppUserRole().name().equals("STUDENT")) {
+                    response.sendRedirect("/dashboard-student");
+                    return;
+                }
+            }
+            response.sendRedirect("/dashboard");
+        };
+    }
+
+
 }
