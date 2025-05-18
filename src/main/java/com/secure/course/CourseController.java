@@ -1,8 +1,5 @@
 package com.secure.course;
 
-import com.secure.course.Course;
-import com.secure.course.CourseRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -144,7 +141,7 @@ public class CourseController {
                 for (Map<String, Object> entry : gradesList) {
                     Long studentId = ((Number) entry.get("studentId")).longValue();
                     Map<String, Object> grades = (Map<String, Object>) entry.get("grades");
-                    
+
                     StudentCourse enrollment = enrollmentMap.get(studentId);
                     if (enrollment == null) {
                         throw new RuntimeException("Enrollment not found for student: " + studentId);

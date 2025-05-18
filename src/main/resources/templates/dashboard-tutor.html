@@ -4,94 +4,279 @@
     <meta charset="UTF-8">
     <title>Teacher Dashboard</title>
     <link rel="stylesheet" th:href="@{/css/pro.css}">
+    <link rel="stylesheet" th:href="@{/css/dashboard-tutor.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        .dashboard-header {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            padding: 2.5rem 2rem;
+            border-radius: 0 0 24px 24px;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .dashboard-header h2 {
+            color: #fff;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+        .dashboard-header p {
+            color: #e2e8f0;
+            font-size: 1.1rem;
+            margin: 0;
+        }
+        .overview-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .overview-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .overview-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+        .overview-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #4299e1, #48bb78);
+        }
+        .overview-card .icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        .overview-card .icon.students { background: linear-gradient(135deg, #4299e1, #2b6cb0); }
+        .overview-card .icon.courses { background: linear-gradient(135deg, #48bb78, #2f855a); }
+        .overview-card .icon.grades { background: linear-gradient(135deg, #ed8936, #c05621); }
+        .overview-card .icon.topgpa { background: linear-gradient(135deg, #48bb78, #2f855a); }
+        .overview-card .icon.passrate { background: linear-gradient(135deg, #48bb78, #2f855a); }
+        .overview-card .icon.activecourse { background: linear-gradient(135deg, #48bb78, #2f855a); }
+        .overview-card .info {
+            flex: 1;
+        }
+        .overview-card .label {
+            color: #718096;
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+        .overview-card .value {
+            color: #2d3748;
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+        .gpa-table-container {
+            background: #fff;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            margin-top: 2.5rem;
+        }
+        .gpa-table-container h3 {
+            color: #2d3748;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        .gpa-table-container select {
+            padding: 0.75rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #2d3748;
+            background: #fff;
+            min-width: 250px;
+            margin-bottom: 1.5rem;
+            transition: border-color 0.3s;
+        }
+        .gpa-table-container select:focus {
+            border-color: #4299e1;
+            outline: none;
+        }
+        .table-container {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+        }
+        .table-container table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        .table-container th {
+            background: #f7fafc;
+            color: #4a5568;
+            font-weight: 600;
+            padding: 1rem 1.5rem;
+            text-align: left;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        .table-container td {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+            color: #2d3748;
+        }
+        .table-container tr:hover {
+            background: #f7fafc;
+        }
+        .grade-entry-container {
+            background: #fff;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            margin-top: 2.5rem;
+        }
+        .grade-entry-container h2 {
+            color: #2d3748;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        .course-selector {
+            margin-bottom: 2rem;
+        }
+        .course-selector label {
+            display: block;
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        .form-actions {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .form-actions button {
+            background: #4299e1;
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .form-actions button:hover {
+            background: #2b6cb0;
+        }
+        @media (max-width: 768px) {
+            .overview-cards {
+                grid-template-columns: 1fr;
+            }
+            .gpa-table-container,
+            .grade-entry-container {
+                padding: 1.5rem;
+            }
+            .table-container {
+                overflow-x: auto;
+            }
+        }
+    </style>
 </head>
 <body>
     <div th:replace="fragments/navbar :: navbarFragment"></div>
     <div class="layout">
         <aside>
-            <h3>Teacher Menu</h3>
-            <button onclick="showSection('overview')">Dashboard Overview</button>
-            <button onclick="showSection('courses')">Courses</button>
-            <button onclick="showSection('grades')">Grade Entry</button>
-            <button onclick="showSection('attendance')">Attendance</button>
-            <button onclick="logout()">Logout</button>
+            <h3><i class="fas fa-chalkboard-teacher"></i> Teacher Menu</h3>
+            <button onclick="showSection('overview')"><i class="fas fa-chart-line"></i> Dashboard Overview</button>
+            <button onclick="showSection('courses')"><i class="fas fa-book"></i> Courses</button>
+            <button onclick="showSection('grades')"><i class="fas fa-graduation-cap"></i> Grade Entry</button>
+            <button onclick="showSection('attendance')"><i class="fas fa-user-check"></i> Attendance</button>
+            <button onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
         </aside>
         <main>
+            <div class="dashboard-header">
+                <h2>Welcome Back, Teacher!</h2>
+                <p>Here's an overview of your teaching progress</p>
+            </div>
+            
             <section id="overview" class="active">
-                <h2 style="margin-bottom: 1.5rem; font-size: 2rem; font-weight: 700; letter-spacing: 1px;">Dashboard Overview</h2>
-                <div class="overview-cards" style="display: flex; flex-wrap: wrap; gap: 2rem; margin-bottom: 2.5rem;">
-                    <div class="overview-card" style="flex:1; min-width: 220px; background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(66,153,225,0.08); padding: 2rem 1.5rem; display: flex; align-items: center; gap: 1.2rem;">
-                        <div style="background: #4299e1; color: #fff; border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">
+                <div class="overview-cards">
+                    <div class="overview-card">
+                        <div class="icon students">
                             <i class="fas fa-users"></i>
                         </div>
-                        <div>
-                            <div style="font-size: 1.1rem; color: #718096;">Total Students</div>
-                            <div id="totalStudents" style="font-size: 2rem; font-weight: bold; color: #2d3748;">...</div>
+                        <div class="info">
+                            <div class="label">Total Students</div>
+                            <div id="totalStudents" class="value">...</div>
                         </div>
                     </div>
-                    <div class="overview-card" style="flex:1; min-width: 220px; background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(66,153,225,0.08); padding: 2rem 1.5rem; display: flex; align-items: center; gap: 1.2rem;">
-                        <div style="background: #48bb78; color: #fff; border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">
+                    <div class="overview-card">
+                        <div class="icon courses">
                             <i class="fas fa-book"></i>
                         </div>
-                        <div>
-                            <div style="font-size: 1.1rem; color: #718096;">Total Courses</div>
-                            <div id="totalCourses" style="font-size: 2rem; font-weight: bold; color: #2d3748;">...</div>
+                        <div class="info">
+                            <div class="label">Total Courses</div>
+                            <div id="totalCourses" class="value">...</div>
                         </div>
                     </div>
-                    <div class="overview-card" style="flex:1; min-width: 220px; background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(66,153,225,0.08); padding: 2rem 1.5rem; display: flex; align-items: center; gap: 1.2rem;">
-                        <div style="background: #f6ad55; color: #fff; border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; font-size: 2rem;">
+                    <div class="overview-card">
+                        <div class="icon grades">
                             <i class="fas fa-chart-line"></i>
                         </div>
-                        <div>
-                            <div style="font-size: 1.1rem; color: #718096;">Average Grade</div>
-                            <div id="averageGrade" style="font-size: 2rem; font-weight: bold; color: #2d3748;">...</div>
+                        <div class="info">
+                            <div class="label">Average Grade</div>
+                            <div id="averageGrade" class="value">...</div>
                         </div>
                     </div>
-                </div>
-                <div class="extra-analytics" style="display: flex; flex-wrap: wrap; gap: 2rem; margin-bottom: 2.5rem;">
-                    <div class="overview-card" style="flex:1; min-width: 220px; background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(66,153,225,0.08); padding: 1.5rem 1.2rem; display: flex; align-items: center; gap: 1.2rem;">
-                        <div style="background: #805ad5; color: #fff; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+                    <div class="overview-card">
+                        <div class="icon topgpa">
                             <i class="fas fa-trophy"></i>
                         </div>
-                        <div>
-                            <div style="font-size: 1rem; color: #718096;">Top GPA</div>
-                            <div id="topGpa" style="font-size: 1.3rem; font-weight: bold; color: #2d3748;">...</div>
+                        <div class="info">
+                            <div class="label">Top GPA</div>
+                            <div id="topGpa" class="value">...</div>
                         </div>
                     </div>
-                    <div class="overview-card" style="flex:1; min-width: 220px; background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(66,153,225,0.08); padding: 1.5rem 1.2rem; display: flex; align-items: center; gap: 1.2rem;">
-                        <div style="background: #e53e3e; color: #fff; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
-                            <i class="fas fa-user-check"></i>
+                    <div class="overview-card">
+                        <div class="icon passrate">
+                            <i class="fas fa-check-circle"></i>
                         </div>
-                        <div>
-                            <div style="font-size: 1rem; color: #718096;">Pass Rate</div>
-                            <div id="passRate" style="font-size: 1.3rem; font-weight: bold; color: #2d3748;">...</div>
+                        <div class="info">
+                            <div class="label">Pass Rate</div>
+                            <div id="passRate" class="value">...</div>
+                        </div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="icon activecourse">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="info">
+                            <div class="label">Most Active Course</div>
+                            <div id="mostActiveCourse" class="value">...</div>
                         </div>
                     </div>
                 </div>
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-                <script>
-                function loadDashboardOverview() {
-                    fetch('/api/dashboard/overview')
-                        .then(res => res.json())
-                        .then(data => {
-                            document.getElementById('totalStudents').textContent = data.totalStudents;
-                            document.getElementById('totalCourses').textContent = data.totalCourses;
-                            document.getElementById('averageGrade').textContent = data.averageGradePercent.toFixed(2) + '%';
-                            if (data.topGpa !== undefined) document.getElementById('topGpa').textContent = data.topGpa.toFixed(2);
-                            if (data.passRate !== undefined) document.getElementById('passRate').textContent = data.passRate.toFixed(1) + '%';
-                        });
-                }
-                document.addEventListener('DOMContentLoaded', function() {
-                    loadDashboardOverview();
-                    if (typeof loadGpaTable === 'function') loadGpaTable();
-                });
-                </script>
 
-                <!-- GPA per course section -->
-                <div class="gpa-table-container" style="margin-top:2.5rem">
-                    <h3>Course GPA Report</h3>
+                <div class="gpa-table-container">
+                    <h3><i class="fas fa-graduation-cap"></i> Course GPA Report</h3>
                     <label for="gpaCourseSelect">Select Course:</label>
-                    <select id="gpaCourseSelect" style="margin-bottom: 1rem; min-width: 220px;">
+                    <select id="gpaCourseSelect">
                         <option value="">-- Select a course --</option>
                         <option th:each="course : ${courses}" th:value="${course.id}" th:text="${course.name}"></option>
                     </select>
@@ -112,75 +297,11 @@
                         </table>
                     </div>
                 </div>
-                <script>
-                document.getElementById('gpaCourseSelect').addEventListener('change', function() {
-                    const courseId = this.value;
-                    const tbody = document.getElementById('courseGpaTableBody');
-                    tbody.innerHTML = '';
-                    if (!courseId) return;
-                    fetch(`/api/courses/${courseId}/gpa`)
-                        .then(res => res.json())
-                        .then(data => {
-                            data.forEach(row => {
-                                const tr = document.createElement('tr');
-                                tr.innerHTML = `
-                                    <td>${row.studentId}</td>
-                                    <td>${row.name}</td>
-                                    <td>${row.gpa.toFixed(2)}</td>
-                                    <td>${row.percentage.toFixed(2)}%</td>
-                                    <td><span style="color: #fff; background:${row.color}; padding: 4px 12px; border-radius: 12px; font-weight:600;">${row.gradeCategory}</span></td>
-                                `;
-                                tbody.appendChild(tr);
-                            });
-                        });
-                });
-                </script>
-            </section>
-
-            <section id="courses">
-                <h2>Your courses</h2>
-                <div class="table-container">
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Teacher</th>
-                            <th>Enrolled</th>
-                            <th>Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-<!--                        <tr>-->
-<!--                            <td>101</td>-->
-<!--                            <td><a class="view-link" href="#">Introduction to Java</a></td>-->
-<!--                            <td>Basic Java programming concepts</td>-->
-<!--                            <td>John Smith</td>-->
-<!--                            <td>25</td>-->
-<!--                            <td><a class="edit-link" href="#">Edit</a></td>-->
-<!--                        </tr>-->
-                        <tr th:each="course : ${courses}">
-                            <td th:text="${course.id}"></td>
-                            <td>
-                                <a class="view-link" th:href="@{/courses/{id}/students(id=${course.id})}"
-                                   th:text="${course.name}"></a>
-                            </td>
-                            <td th:text="${course.description}"></td>
-                            <td th:text="${course.teacher.firstName + ' ' + course.teacher.lastName}"></td>
-                            <td><!-- يمكنك تفعيل هذا السطر إذا كان لديك enrolledStudents --></td>
-                            <td>
-                                <a class="edit-link" th:href="@{/courses/{id}/edit(id=${course.id})}">Edit</a>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
             </section>
 
             <section id="grades">
-                <h2>Grade Entry</h2>
                 <div class="grade-entry-container">
+                    <h2><i class="fas fa-edit"></i> Grade Entry</h2>
                     <div class="course-selector">
                         <label for="gradeCourseSelect">Select Course:</label>
                         <select id="gradeCourseSelect" onchange="loadStudentsForGrading()">
@@ -189,7 +310,7 @@
                         </select>
                     </div>
                     
-                    <div id="gradeForm" style="margin-top: 2rem; display: none;">
+                    <div id="gradeForm" style="display: none;">
                         <div class="table-container">
                             <table>
                                 <thead>
@@ -211,301 +332,360 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="form-actions" style="margin-top: 1rem;">
-                            <button onclick="saveAllGrades()" class="primary">Save All Grades</button>
+                        <div class="form-actions">
+                            <button onclick="saveAllGrades()" class="primary">
+                                <i class="fas fa-save"></i> Save All Grades
+                            </button>
                         </div>
                     </div>
                 </div>
             </section>
 
             <section id="attendance">
-                <h2>Attendance Entry</h2>
-                <label for="attendanceCourseSelect">Select Course:</label>
-                <select id="attendanceCourseSelect" onchange="loadAttendanceStudents()">
-                    <option value="">-- Select a course --</option>
-                    <option th:each="course : ${courses}" th:value="${course.id}" th:text="${course.name}"></option>
-                </select>
-                <form id="attendanceForm" style="display:none" onsubmit="return saveAttendance(event)">
-                    <div class="table-container">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Student ID</th>
-                                    <th>Student Name</th>
-                                    <th>Date</th>
-                                    <th>Status (Absent)</th>
-                                </tr>
-                            </thead>
-                            <tbody id="attendanceTableBody">
-                                <!-- Filled by JS -->
-                            </tbody>
-                        </table>
+                <div class="grade-entry-container">
+                    <h2><i class="fas fa-user-check"></i> Attendance Entry</h2>
+                    <div class="course-selector">
+                        <label for="attendanceCourseSelect">Select Course:</label>
+                        <select id="attendanceCourseSelect" onchange="loadAttendanceStudents()">
+                            <option value="">-- Select a course --</option>
+                            <option th:each="course : ${courses}" th:value="${course.id}" th:text="${course.name}"></option>
+                        </select>
                     </div>
-                    <button type="submit" class="primary">Save</button>
-                </form>
+                    <form id="attendanceForm" style="display:none" onsubmit="return saveAttendance(event)">
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Student ID</th>
+                                        <th>Student Name</th>
+                                        <th>Date</th>
+                                        <th>Status (Absent)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="attendanceTableBody">
+                                    <!-- Filled by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="primary">
+                                <i class="fas fa-save"></i> Save Attendance
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </section>
         </main>
     </div>
-    <script>
-        function showSection(id) {
-            document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-        }
-        function displayCourseStudents() {
-            const select = document.getElementById('courseSelect');
-            document.getElementById('courseStudents').style.display = select.value === "" ? 'none' : 'block';
-        }
-        function displayGradeForm() {
-            const select = document.getElementById('gradeCourseSelect');
-            document.getElementById('gradeForm').style.display = select.value === "" ? 'none' : 'block';
-        }
-        function logout() {
-            window.location.href = "http://localhost:8080/logout";
-        }
-    </script>
-
-    <script>
-        function toggleStatusColor(checkbox) {
-            if (checkbox.checked) {
-                checkbox.classList.remove('red');
-            } else {
-                checkbox.classList.add('red');
-            }
-        }
-    </script>
-
-    <script>
-    function loadAttendanceStudents() {
-        const courseId = document.getElementById('attendanceCourseSelect').value;
-        const form = document.getElementById('attendanceForm');
-        const tbody = document.getElementById('attendanceTableBody');
-        tbody.innerHTML = '';
-        if (!courseId) {
-            form.style.display = 'none';
-            return;
-        }
-        fetch(`/api/courses/${courseId}/students`)
-            .then(res => res.json())
-            .then(data => {
-                const today = new Date().toISOString().slice(0, 10);
-                data.forEach(student => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${student.id}</td>
-                        <td>${student.name}</td>
-                        <td>${today}</td>
-                        <td><input type="checkbox" name="absent" value="${student.id}"></td>
-                    `;
-                    tbody.appendChild(row);
-                });
-                form.style.display = '';
-            });
-    }
-
-    function saveAttendance(event) {
-        event.preventDefault();
-        const courseId = document.getElementById('attendanceCourseSelect').value;
-        const absentIds = Array.from(document.querySelectorAll('input[name="absent"]:checked')).map(cb => cb.value);
-        fetch(`/api/courses/${courseId}/attendance`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(absentIds)
-        }).then(res => {
-            if (res.ok) {
-                showNotification('Attendance saved!', 'success');
-                loadAttendanceStudents();
-            } else {
-                showNotification('Error saving attendance', 'error');
-            }
-        });
-        return false;
-    }
-    </script>
-
-    <script>
-    function loadStudentsForGrading() {
-        const courseId = document.getElementById('gradeCourseSelect').value;
-        const form = document.getElementById('gradeForm');
-        const tbody = document.getElementById('gradeTableBody');
-        tbody.innerHTML = '';
-        
-        if (!courseId) {
-            form.style.display = 'none';
-            return;
-        }
-
-        fetch(`/api/courses/${courseId}/students-for-grading`)
-            .then(res => res.json())
-            .then(data => {
-                data.forEach(student => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${student.studentId}</td>
-                        <td>${student.name}</td>
-                        <td><input type="number" min="0" max="100" step="0.1" 
-                            value="${student.midterm || ''}" 
-                            onchange="updateGrade(${student.studentId}, 'midterm', this.value)"></td>
-                        <td><input type="number" min="0" max="100" step="0.1" 
-                            value="${student.finalExam || ''}" 
-                            onchange="updateGrade(${student.studentId}, 'finalExam', this.value)"></td>
-                        <td><input type="number" min="0" max="100" step="0.1" 
-                            value="${student.assignments || ''}" 
-                            onchange="updateGrade(${student.studentId}, 'assignments', this.value)"></td>
-                        <td><input type="number" min="0" max="100" step="0.1" 
-                            value="${student.quizzes || ''}" 
-                            onchange="updateGrade(${student.studentId}, 'quizzes', this.value)"></td>
-                        <td><input type="number" min="0" max="100" step="0.1" 
-                            value="${student.project || ''}" 
-                            onchange="updateGrade(${student.studentId}, 'project', this.value)"></td>
-                        <td><input type="number" min="0" max="100" step="0.1" 
-                            value="${student.attendance || ''}" 
-                            onchange="updateGrade(${student.studentId}, 'attendance', this.value)"></td>
-                        <td><input type="checkbox" 
-                            ${student.finished ? 'checked' : ''} 
-                            onchange="updateGrade(${student.studentId}, 'finished', this.checked)"></td>
-                        <td>
-                            <button onclick="saveStudentGrade(${student.studentId})" class="secondary">Save</button>
-                        </td>
-                    `;
-                    tbody.appendChild(row);
-                });
-                form.style.display = '';
-            });
-    }
-
-    let pendingGrades = new Map();
-
-    function updateGrade(studentId, field, value) {
-        if (!pendingGrades.has(studentId)) {
-            pendingGrades.set(studentId, {});
-        }
-        // Convert string values to appropriate types
-        if (field === 'finished') {
-            pendingGrades.get(studentId)[field] = value;
-        } else {
-            // Convert to number, use 0 if empty or invalid
-            const numValue = value === '' ? 0 : parseFloat(value);
-            pendingGrades.get(studentId)[field] = isNaN(numValue) ? 0 : numValue;
-        }
-    }
-
-    function saveAllGrades() {
-        const courseId = document.getElementById('gradeCourseSelect').value;
-        if (pendingGrades.size === 0) {
-            showNotification('No changes to save');
-            return;
-        }
-
-        // Convert Map to array of objects with proper structure
-        const gradesData = Array.from(pendingGrades.entries()).map(([studentId, grades]) => ({
-            studentId: parseInt(studentId),
-            grades: Object.fromEntries(
-                Object.entries(grades).map(([key, value]) => [
-                    key,
-                    key === 'finished' ? value : parseFloat(value)
-                ])
-            )
-        }));
-
-        fetch(`/api/courses/${courseId}/grades`, {
-            method: 'POST',
-            headers: { 
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(gradesData)
-        })
-        .then(res => {
-            if (res.ok) {
-                pendingGrades.clear();
-                showNotification('All grades saved successfully!', 'success');
-                loadStudentsForGrading();
-            } else {
-                res.text().then(text => {
-                    showNotification('Error saving grades: ' + text, 'error');
-                });
-            }
-        })
-        .catch(error => {
-            showNotification('Error saving grades: ' + error.message, 'error');
-        });
-    }
-
-    function saveStudentGrade(studentId) {
-        const courseId = document.getElementById('gradeCourseSelect').value;
-        const grades = pendingGrades.get(studentId);
-        if (!grades) return;
-
-        // Convert grades to proper numeric values
-        const processedGrades = Object.fromEntries(
-            Object.entries(grades).map(([key, value]) => [
-                key,
-                key === 'finished' ? value : parseFloat(value)
-            ])
-        );
-
-        fetch(`/api/courses/${courseId}/grades/${studentId}`, {
-            method: 'POST',
-            headers: { 
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(processedGrades)
-        })
-        .then(res => {
-            if (res.ok) {
-                pendingGrades.delete(studentId);
-                showNotification('Grades saved successfully!', 'success');
-                loadStudentsForGrading();
-            } else {
-                res.text().then(text => {
-                    showNotification('Error saving grades: ' + text, 'error');
-                });
-            }
-        })
-        .catch(error => {
-            showNotification('Error saving grades: ' + error.message, 'error');
-        });
-    }
-    </script>
 
     <!-- Notification container -->
     <div id="notification" style="position:fixed;top:32px;right:32px;z-index:9999;min-width:260px;max-width:350px;display:none;"></div>
 
     <script>
-    function showNotification(message, type = 'success') {
-        const notification = document.getElementById('notification');
-        notification.innerHTML = `<div class="notify-box ${type}">${message}</div>`;
-        notification.style.display = 'block';
-        setTimeout(() => {
-            notification.style.display = 'none';
-        }, 3000);
-    }
-    </script>
-    <style>
-    .notify-box {
-        background: #fff;
-        color: #222;
-        border-radius: 8px;
-        box-shadow: 0 4px 24px rgba(0,0,0,0.13);
-        padding: 1.1rem 1.5rem;
-        font-size: 1.1rem;
-        font-weight: 500;
-        margin-bottom: 8px;
-        border-left: 6px solid #38a169;
-        opacity: 0;
-        animation: fadeInOut 3s forwards;
-        position: relative;
-    }
-    .notify-box.success { border-color: #38a169; }
-    .notify-box.error { border-color: #e53e3e; }
-    @keyframes fadeInOut {
-        0% { opacity: 0; transform: translateY(-20px); }
-        10% { opacity: 1; transform: translateY(0); }
-        90% { opacity: 1; transform: translateY(0); }
-        100% { opacity: 0; transform: translateY(-20px); }
-    }
-    </style>
+        function showSection(id) {
+            document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
 
+        function logout() {
+            window.location.href = "/logout";
+        }
+
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            notification.innerHTML = `
+                <div class="notify-box ${type}">
+                    <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+                    ${message}
+                </div>
+            `;
+            notification.style.display = 'block';
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+
+        // Add animation to overview cards
+        document.querySelectorAll('.overview-card').forEach((card, index) => {
+            card.style.animation = `fadeInUp 0.5s ease-out ${index * 0.1}s both`;
+        });
+
+        // Load dashboard overview data
+        function loadDashboardOverview() {
+            fetch('/api/dashboard/overview')
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('totalStudents').textContent = data.totalStudents;
+                    document.getElementById('totalCourses').textContent = data.totalCourses;
+                    document.getElementById('averageGrade').textContent = data.averageGradePercent.toFixed(2) + '%';
+                    if (typeof data.topGpa !== 'undefined') {
+                        document.getElementById('topGpa').textContent = data.topGpa.toFixed(2);
+                    }
+                    if (typeof data.passRate !== 'undefined') {
+                        document.getElementById('passRate').textContent = data.passRate.toFixed(1) + '%';
+                    }
+                    if (typeof data.mostActiveCourse !== 'undefined') {
+                        document.getElementById('mostActiveCourse').textContent = data.mostActiveCourse;
+                    }
+                });
+        }
+
+        // Load GPA table data
+        document.getElementById('gpaCourseSelect').addEventListener('change', function() {
+            const courseId = this.value;
+            const tbody = document.getElementById('courseGpaTableBody');
+            tbody.innerHTML = '';
+            if (!courseId) return;
+            fetch(`/api/courses/${courseId}/gpa`)
+                .then(res => res.json())
+                .then(data => {
+                    data.forEach(row => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td>${row.studentId}</td>
+                            <td>${row.name}</td>
+                            <td>${row.gpa.toFixed(2)}</td>
+                            <td>${row.percentage.toFixed(2)}%</td>
+                            <td><span style="color: #fff; background:${row.color}; padding: 4px 12px; border-radius: 12px; font-weight:600;">${row.gradeCategory}</span></td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+                });
+        });
+
+        // Load students for grading
+        function loadStudentsForGrading() {
+            const courseId = document.getElementById('gradeCourseSelect').value;
+            const form = document.getElementById('gradeForm');
+            const tbody = document.getElementById('gradeTableBody');
+            tbody.innerHTML = '';
+            
+            if (!courseId) {
+                form.style.display = 'none';
+                return;
+            }
+
+            fetch(`/api/courses/${courseId}/students-for-grading`)
+                .then(res => res.json())
+                .then(data => {
+                    data.forEach(student => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${student.studentId}</td>
+                            <td>${student.name}</td>
+                            <td><input type="number" min="0" max="100" step="0.1" 
+                                value="${student.midterm || ''}" 
+                                onchange="updateGrade(${student.studentId}, 'midterm', this.value)"></td>
+                            <td><input type="number" min="0" max="100" step="0.1" 
+                                value="${student.finalExam || ''}" 
+                                onchange="updateGrade(${student.studentId}, 'finalExam', this.value)"></td>
+                            <td><input type="number" min="0" max="100" step="0.1" 
+                                value="${student.assignments || ''}" 
+                                onchange="updateGrade(${student.studentId}, 'assignments', this.value)"></td>
+                            <td><input type="number" min="0" max="100" step="0.1" 
+                                value="${student.quizzes || ''}" 
+                                onchange="updateGrade(${student.studentId}, 'quizzes', this.value)"></td>
+                            <td><input type="number" min="0" max="100" step="0.1" 
+                                value="${student.project || ''}" 
+                                onchange="updateGrade(${student.studentId}, 'project', this.value)"></td>
+                            <td><input type="number" min="0" max="100" step="0.1" 
+                                value="${student.attendance || ''}" 
+                                onchange="updateGrade(${student.studentId}, 'attendance', this.value)"></td>
+                            <td><input type="checkbox" 
+                                ${student.finished ? 'checked' : ''} 
+                                onchange="updateGrade(${student.studentId}, 'finished', this.checked)"></td>
+                            <td>
+                                <button onclick="saveStudentGrade(${student.studentId})" class="secondary">Save</button>
+                            </td>
+                        `;
+                        tbody.appendChild(row);
+                    });
+                    form.style.display = '';
+                });
+        }
+
+        let pendingGrades = new Map();
+
+        function updateGrade(studentId, field, value) {
+            if (!pendingGrades.has(studentId)) {
+                pendingGrades.set(studentId, {});
+            }
+            if (field === 'finished') {
+                pendingGrades.get(studentId)[field] = value;
+            } else {
+                const numValue = value === '' ? 0 : parseFloat(value);
+                pendingGrades.get(studentId)[field] = isNaN(numValue) ? 0 : numValue;
+            }
+        }
+
+        function saveAllGrades() {
+            const courseId = document.getElementById('gradeCourseSelect').value;
+            if (pendingGrades.size === 0) {
+                showNotification('No changes to save');
+                return;
+            }
+
+            const gradesData = Array.from(pendingGrades.entries()).map(([studentId, grades]) => ({
+                studentId: parseInt(studentId),
+                grades: Object.fromEntries(
+                    Object.entries(grades).map(([key, value]) => [
+                        key,
+                        key === 'finished' ? value : parseFloat(value)
+                    ])
+                )
+            }));
+
+            fetch(`/api/courses/${courseId}/grades`, {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(gradesData)
+            })
+            .then(res => {
+                if (res.ok) {
+                    pendingGrades.clear();
+                    showNotification('All grades saved successfully!', 'success');
+                    loadStudentsForGrading();
+                } else {
+                    res.text().then(text => {
+                        showNotification('Error saving grades: ' + text, 'error');
+                    });
+                }
+            })
+            .catch(error => {
+                showNotification('Error saving grades: ' + error.message, 'error');
+            });
+        }
+
+        function saveStudentGrade(studentId) {
+            const courseId = document.getElementById('gradeCourseSelect').value;
+            const grades = pendingGrades.get(studentId);
+            if (!grades) return;
+
+            const processedGrades = Object.fromEntries(
+                Object.entries(grades).map(([key, value]) => [
+                    key,
+                    key === 'finished' ? value : parseFloat(value)
+                ])
+            );
+
+            fetch(`/api/courses/${courseId}/grades/${studentId}`, {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(processedGrades)
+            })
+            .then(res => {
+                if (res.ok) {
+                    pendingGrades.delete(studentId);
+                    showNotification('Grades saved successfully!', 'success');
+                    loadStudentsForGrading();
+                } else {
+                    res.text().then(text => {
+                        showNotification('Error saving grades: ' + text, 'error');
+                    });
+                }
+            })
+            .catch(error => {
+                showNotification('Error saving grades: ' + error.message, 'error');
+            });
+        }
+
+        // Load attendance students
+        function loadAttendanceStudents() {
+            const courseId = document.getElementById('attendanceCourseSelect').value;
+            const form = document.getElementById('attendanceForm');
+            const tbody = document.getElementById('attendanceTableBody');
+            tbody.innerHTML = '';
+            if (!courseId) {
+                form.style.display = 'none';
+                return;
+            }
+            fetch(`/api/courses/${courseId}/students`)
+                .then(res => res.json())
+                .then(data => {
+                    const today = new Date().toISOString().slice(0, 10);
+                    data.forEach(student => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${student.id}</td>
+                            <td>${student.name}</td>
+                            <td>${today}</td>
+                            <td><input type="checkbox" name="absent" value="${student.id}"></td>
+                        `;
+                        tbody.appendChild(row);
+                    });
+                    form.style.display = '';
+                });
+        }
+
+        function saveAttendance(event) {
+            event.preventDefault();
+            const courseId = document.getElementById('attendanceCourseSelect').value;
+            const absentIds = Array.from(document.querySelectorAll('input[name="absent"]:checked')).map(cb => cb.value);
+            fetch(`/api/courses/${courseId}/attendance`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(absentIds)
+            }).then(res => {
+                if (res.ok) {
+                    showNotification('Attendance saved!', 'success');
+                    loadAttendanceStudents();
+                } else {
+                    showNotification('Error saving attendance', 'error');
+                }
+            });
+            return false;
+        }
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            loadDashboardOverview();
+        });
+    </script>
+
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .notify-box {
+            background: #fff;
+            color: #2d3748;
+            border-radius: 8px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+            padding: 1.1rem 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            border-left: 6px solid #38a169;
+            opacity: 0;
+            animation: fadeInOut 3s forwards;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .notify-box.success { border-color: #38a169; }
+        .notify-box.error { border-color: #e53e3e; }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(-20px); }
+            10% { opacity: 1; transform: translateY(0); }
+            90% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-20px); }
+        }
+    </style>
 </body>
 </html>

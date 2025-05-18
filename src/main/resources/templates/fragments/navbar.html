@@ -8,7 +8,11 @@
             <li th:classappend="${activeTab} == 'users' ? 'active'">
                 <a th:href="@{/users}">Users</a>
             </li>
+            
         </ul>
-        <a class="add-btn" th:href="@{/courses/add}">Add New Course</a>
+        <div class="navbar-right">
+            <a class="register-btn" th:href="@{/register}">Register Account</a>
+            <a class="add-btn" th:href="@{/courses/add}">Add New Course</a>
+        </div>
     </div>
 </div> 
