@@ -1,7 +1,7 @@
 package com.secure.course;
 
 import com.secure.appuser.AppUser;
-import com.secure.model.StudentCourse;
+import com.secure.student.StudentCourse;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

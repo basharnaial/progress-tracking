@@ -1,4 +1,4 @@
-package com.secure.model;
+package com.secure.student;
 
 import com.secure.appuser.AppUser;
 import com.secure.course.Course;

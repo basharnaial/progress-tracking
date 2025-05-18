@@ -5,8 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.secure.model.StudentCourse;
-import com.secure.model.StudentCourseRepository;
+import com.secure.student.StudentCourse;
+import com.secure.student.StudentCourseRepository;
 import com.secure.appuser.AppUser;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
@@ -16,7 +16,6 @@ import com.secure.appuser.AppUserRole;
 import org.springframework.http.ResponseEntity;
 
 @Controller
-@RequestMapping("/courses")
 public class CourseController {
 
     @Autowired
@@ -28,7 +27,7 @@ public class CourseController {
     @Autowired
     private AppUserRepository appUserRepository;
 
-    @GetMapping
+    @GetMapping("/courses")
     public String listCourses(Model model) {
         List<Course> courses = courseRepository.findAll();
         model.addAttribute("courses", courses);

@@ -1,7 +1,7 @@
 package com.secure.appuser;
 
 import com.secure.course.Course;
-import com.secure.model.StudentCourse;
+import com.secure.student.StudentCourse;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
