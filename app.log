@@ -1,0 +1,399 @@
+2025-05-18 20:34:34.490  INFO 41632 --- [main] com.secure.DemoApplication               : Starting DemoApplication using Java 23.0.1 on BasharN with PID 41632 (C:\Users\basha\SE\ProgressTracking\target\classes started by basha in C:\Users\basha\SE\ProgressTracking)
+2025-05-18 20:34:34.492  INFO 41632 --- [main] com.secure.DemoApplication               : No active profile set, falling back to 1 default profile: "default"
+2025-05-18 20:34:34.898  INFO 41632 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-18 20:34:34.936  INFO 41632 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 33 ms. Found 5 JPA repository interfaces.
+2025-05-18 20:34:35.269  INFO 41632 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2025-05-18 20:34:35.274  INFO 41632 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-18 20:34:35.274  INFO 41632 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.83]
+2025-05-18 20:34:35.345  INFO 41632 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-18 20:34:35.345  INFO 41632 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 814 ms
+2025-05-18 20:34:35.439  INFO 41632 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-18 20:34:35.464  INFO 41632 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2025-05-18 20:34:35.574  INFO 41632 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2025-05-18 20:34:35.627  INFO 41632 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-18 20:34:35.854  INFO 41632 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-18 20:34:35.863  INFO 41632 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2025-05-18 20:34:36.356  INFO 41632 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-05-18 20:34:36.363  INFO 41632 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-18 20:34:36.762  WARN 41632 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-18 20:34:36.847  INFO 41632 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7528089c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@136690b1, org.springframework.security.web.context.SecurityContextPersistenceFilter@13edc1bc, org.springframework.security.web.header.HeaderWriterFilter@1a34f8e2, org.springframework.security.web.authentication.logout.LogoutFilter@1ccce165, com.secure.security.config.WebSecurityConfig$1@39007725, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@41092c8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@63fde7ca, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2446be5f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3eb8057c, org.springframework.security.web.session.SessionManagementFilter@22a8c837, org.springframework.security.web.access.ExceptionTranslationFilter@291522f1, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6e349258]
+2025-05-18 20:34:37.091  INFO 41632 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2025-05-18 20:34:37.096  INFO 41632 --- [main] com.secure.DemoApplication               : Started DemoApplication in 2.87 seconds (JVM running for 3.255)
+2025-05-18 20:34:49.259  INFO 41632 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-18 20:34:49.259  INFO 41632 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-18 20:34:49.262  INFO 41632 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2025-05-18 20:34:49.989  INFO 41632 --- [http-nio-8080-exec-7] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:34:49.989  INFO 41632 --- [http-nio-8080-exec-10] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:34:49.989  INFO 41632 --- [http-nio-8080-exec-5] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:34:50.239  INFO 41632 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:34:50.548  INFO 41632 --- [http-nio-8080-exec-6] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:34:50.881  INFO 41632 --- [http-nio-8080-exec-5] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:34:51.197  INFO 41632 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:34:51.490  INFO 41632 --- [http-nio-8080-exec-9] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:34:51.722  INFO 41632 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:34:52.034  INFO 41632 --- [http-nio-8080-exec-8] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:35:16.812  INFO 41632 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /login from IP: 127.0.0.1
+2025-05-18 20:35:17.106  INFO 41632 --- [http-nio-8080-exec-7] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /login from IP: 127.0.0.1
+2025-05-18 20:35:17.416  INFO 41632 --- [http-nio-8080-exec-10] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /login from IP: 127.0.0.1
+2025-05-18 20:35:17.726  INFO 41632 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /login from IP: 127.0.0.1
+2025-05-18 20:35:18.036  INFO 41632 --- [http-nio-8080-exec-6] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /login from IP: 127.0.0.1
+2025-05-18 20:35:18.311  INFO 41632 --- [http-nio-8080-exec-5] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /login from IP: 127.0.0.1
+2025-05-18 20:35:18.595  INFO 41632 --- [http-nio-8080-exec-8] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /login from IP: 127.0.0.1
+2025-05-18 20:35:18.913  INFO 41632 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /login from IP: 127.0.0.1
+2025-05-18 20:35:19.209  INFO 41632 --- [http-nio-8080-exec-7] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /login from IP: 127.0.0.1
+2025-05-18 20:35:19.501  INFO 41632 --- [http-nio-8080-exec-10] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /login from IP: 127.0.0.1
+2025-05-18 20:36:10.222  INFO 41632 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:36:10.552  INFO 41632 --- [http-nio-8080-exec-6] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:36:10.845  INFO 41632 --- [http-nio-8080-exec-5] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:36:11.126  INFO 41632 --- [http-nio-8080-exec-1] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:36:11.428  INFO 41632 --- [http-nio-8080-exec-9] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:36:11.743  INFO 41632 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:36:12.012  INFO 41632 --- [http-nio-8080-exec-8] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:36:12.323  INFO 41632 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:36:12.637  INFO 41632 --- [http-nio-8080-exec-7] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:36:12.932  INFO 41632 --- [http-nio-8080-exec-10] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:36:34.713  INFO 41632 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-18 20:36:34.715  INFO 41632 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-18 20:36:34.727  INFO 41632 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-18 20:36:44.558  INFO 21652 --- [main] com.secure.DemoApplication               : Starting DemoApplication using Java 23.0.1 on BasharN with PID 21652 (C:\Users\basha\SE\ProgressTracking\target\classes started by basha in C:\Users\basha\SE\ProgressTracking)
+2025-05-18 20:36:44.560  INFO 21652 --- [main] com.secure.DemoApplication               : No active profile set, falling back to 1 default profile: "default"
+2025-05-18 20:36:44.960  INFO 21652 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-18 20:36:45.000  INFO 21652 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 35 ms. Found 5 JPA repository interfaces.
+2025-05-18 20:36:45.334  INFO 21652 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2025-05-18 20:36:45.340  INFO 21652 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-18 20:36:45.340  INFO 21652 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.83]
+2025-05-18 20:36:45.401  INFO 21652 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-18 20:36:45.402  INFO 21652 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 805 ms
+2025-05-18 20:36:45.490  INFO 21652 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-18 20:36:45.516  INFO 21652 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2025-05-18 20:36:45.602  INFO 21652 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2025-05-18 20:36:45.656  INFO 21652 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-18 20:36:45.891  INFO 21652 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-18 20:36:45.900  INFO 21652 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2025-05-18 20:36:46.397  INFO 21652 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-05-18 20:36:46.404  INFO 21652 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-18 20:36:46.787  WARN 21652 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-18 20:36:46.873  INFO 21652 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@9771c71, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@63c66980, org.springframework.security.web.context.SecurityContextPersistenceFilter@2926f7bd, org.springframework.security.web.header.HeaderWriterFilter@18d09283, org.springframework.security.web.authentication.logout.LogoutFilter@7f7f544a, com.secure.security.config.WebSecurityConfig$1@8cce9ad, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@474deb4c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@211cf27b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@75f446df, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6dc5e857, org.springframework.security.web.session.SessionManagementFilter@6672b0ea, org.springframework.security.web.access.ExceptionTranslationFilter@601e7c97, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@35975b05]
+2025-05-18 20:36:47.181  INFO 21652 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2025-05-18 20:36:47.186  INFO 21652 --- [main] com.secure.DemoApplication               : Started DemoApplication in 2.888 seconds (JVM running for 3.26)
+2025-05-18 20:37:09.226  INFO 21652 --- [http-nio-8080-exec-6] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-18 20:37:09.227  INFO 21652 --- [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-18 20:37:09.227  INFO 21652 --- [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-05-18 20:37:09.707  INFO 21652 --- [http-nio-8080-exec-7] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /login from IP: 127.0.0.1
+2025-05-18 20:37:09.815  INFO 21652 --- [http-nio-8080-exec-5] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /login from IP: 127.0.0.1
+2025-05-18 20:37:09.930  INFO 21652 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /login from IP: 127.0.0.1
+2025-05-18 20:37:10.237  INFO 21652 --- [http-nio-8080-exec-6] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /login from IP: 127.0.0.1
+2025-05-18 20:37:10.517  INFO 21652 --- [http-nio-8080-exec-5] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /login from IP: 127.0.0.1
+2025-05-18 20:37:10.828  INFO 21652 --- [http-nio-8080-exec-9] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /login from IP: 127.0.0.1
+2025-05-18 20:37:11.109  INFO 21652 --- [http-nio-8080-exec-10] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /login from IP: 127.0.0.1
+2025-05-18 20:37:11.410  INFO 21652 --- [http-nio-8080-exec-7] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /login from IP: 127.0.0.1
+2025-05-18 20:37:11.736  INFO 21652 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /login from IP: 127.0.0.1
+2025-05-18 20:37:12.034  INFO 21652 --- [http-nio-8080-exec-8] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /login from IP: 127.0.0.1
+2025-05-18 20:37:28.423  INFO 21652 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-18 20:37:28.424  INFO 21652 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-18 20:37:28.428  INFO 21652 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-18 20:37:31.010  INFO 45552 --- [main] com.secure.DemoApplication               : Starting DemoApplication using Java 23.0.1 on BasharN with PID 45552 (C:\Users\basha\SE\ProgressTracking\target\classes started by basha in C:\Users\basha\SE\ProgressTracking)
+2025-05-18 20:37:31.011  INFO 45552 --- [main] com.secure.DemoApplication               : No active profile set, falling back to 1 default profile: "default"
+2025-05-18 20:37:31.426  INFO 45552 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-18 20:37:31.470  INFO 45552 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 38 ms. Found 5 JPA repository interfaces.
+2025-05-18 20:37:31.811  INFO 45552 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2025-05-18 20:37:31.817  INFO 45552 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-18 20:37:31.817  INFO 45552 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.83]
+2025-05-18 20:37:31.884  INFO 45552 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-18 20:37:31.885  INFO 45552 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 835 ms
+2025-05-18 20:37:31.980  INFO 45552 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-18 20:37:32.013  INFO 45552 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2025-05-18 20:37:32.105  INFO 45552 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2025-05-18 20:37:32.160  INFO 45552 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-18 20:37:32.382  INFO 45552 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-18 20:37:32.391  INFO 45552 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2025-05-18 20:37:32.885  INFO 45552 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-05-18 20:37:32.892  INFO 45552 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-18 20:37:33.269  WARN 45552 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-18 20:37:33.356  INFO 45552 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@63541cd4, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2111d7b9, org.springframework.security.web.context.SecurityContextPersistenceFilter@543c887, org.springframework.security.web.header.HeaderWriterFilter@5a20f793, org.springframework.security.web.authentication.logout.LogoutFilter@29a1dab3, com.secure.security.config.WebSecurityConfig$1@7a023e34, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@8cce9ad, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3751baf6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@441762b8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@260f05ee, org.springframework.security.web.session.SessionManagementFilter@4e0139, org.springframework.security.web.access.ExceptionTranslationFilter@943cf5, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@63c66980]
+2025-05-18 20:37:33.603  INFO 45552 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2025-05-18 20:37:33.608  INFO 45552 --- [main] com.secure.DemoApplication               : Started DemoApplication in 2.87 seconds (JVM running for 3.252)
+2025-05-18 20:37:37.210  INFO 45552 --- [http-nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-18 20:37:37.210  INFO 45552 --- [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-18 20:37:37.211  INFO 45552 --- [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-05-18 20:37:37.487  INFO 45552 --- [http-nio-8080-exec-1] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:37:37.584  INFO 45552 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:37:37.884  INFO 45552 --- [http-nio-8080-exec-8] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:37:38.202  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:37:38.474  INFO 45552 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:37:38.763  INFO 45552 --- [http-nio-8080-exec-7] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:37:39.060  INFO 45552 --- [http-nio-8080-exec-10] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:37:39.364  INFO 45552 --- [http-nio-8080-exec-1] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:37:39.656  INFO 45552 --- [http-nio-8080-exec-6] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:37:39.967  INFO 45552 --- [http-nio-8080-exec-9] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:04.186  INFO 45552 --- [http-nio-8080-exec-1] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:04.277  INFO 45552 --- [http-nio-8080-exec-6] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:04.386  INFO 45552 --- [http-nio-8080-exec-9] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:04.471  INFO 45552 --- [http-nio-8080-exec-1] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:04.580  INFO 45552 --- [http-nio-8080-exec-6] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:04.693  INFO 45552 --- [http-nio-8080-exec-9] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:04.787  INFO 45552 --- [http-nio-8080-exec-1] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:04.896  INFO 45552 --- [http-nio-8080-exec-6] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:04.992  INFO 45552 --- [http-nio-8080-exec-9] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:05.072  INFO 45552 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:05.192  INFO 45552 --- [http-nio-8080-exec-8] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:05.276  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:05.393  INFO 45552 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:05.494  INFO 45552 --- [http-nio-8080-exec-8] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:05.579  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:05.705  INFO 45552 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:05.774  INFO 45552 --- [http-nio-8080-exec-8] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:05.868  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:05.980  INFO 45552 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:06.075  INFO 45552 --- [http-nio-8080-exec-8] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:06.184  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:06.268  INFO 45552 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:06.365  INFO 45552 --- [http-nio-8080-exec-8] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:06.474  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:06.576  INFO 45552 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:06.701  INFO 45552 --- [http-nio-8080-exec-8] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:06.811  INFO 45552 --- [http-nio-8080-exec-9] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:06.883  INFO 45552 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:06.980  INFO 45552 --- [http-nio-8080-exec-8] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:07.080  INFO 45552 --- [http-nio-8080-exec-9] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:07.178  INFO 45552 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:07.272  INFO 45552 --- [http-nio-8080-exec-8] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:07.384  INFO 45552 --- [http-nio-8080-exec-9] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:07.464  INFO 45552 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:07.541  INFO 45552 --- [http-nio-8080-exec-8] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:07.645  INFO 45552 --- [http-nio-8080-exec-9] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:07.731  INFO 45552 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:07.854  INFO 45552 --- [http-nio-8080-exec-8] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:07.990  INFO 45552 --- [http-nio-8080-exec-9] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:08.081  INFO 45552 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:08.174  INFO 45552 --- [http-nio-8080-exec-8] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:08.273  INFO 45552 --- [http-nio-8080-exec-9] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:08.368  INFO 45552 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:08.455  INFO 45552 --- [http-nio-8080-exec-8] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:08.563  INFO 45552 --- [http-nio-8080-exec-9] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:08.673  INFO 45552 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:08.769  INFO 45552 --- [http-nio-8080-exec-8] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:08.880  INFO 45552 --- [http-nio-8080-exec-9] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:08.982  INFO 45552 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:09.067  INFO 45552 --- [http-nio-8080-exec-8] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:09.175  INFO 45552 --- [http-nio-8080-exec-9] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:09.305  INFO 45552 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:09.368  INFO 45552 --- [http-nio-8080-exec-8] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:09.501  INFO 45552 --- [http-nio-8080-exec-9] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:09.609  INFO 45552 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:09.658  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:09.767  INFO 45552 --- [http-nio-8080-exec-10] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:09.886  INFO 45552 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:09.983  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:10.086  INFO 45552 --- [http-nio-8080-exec-10] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:10.171  INFO 45552 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:10.277  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:10.386  INFO 45552 --- [http-nio-8080-exec-10] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:10.467  INFO 45552 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:10.555  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:10.686  INFO 45552 --- [http-nio-8080-exec-10] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:10.787  INFO 45552 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:10.889  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:10.975  INFO 45552 --- [http-nio-8080-exec-10] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:11.059  INFO 45552 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:11.167  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:11.277  INFO 45552 --- [http-nio-8080-exec-10] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:11.362  INFO 45552 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:11.461  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:11.553  INFO 45552 --- [http-nio-8080-exec-10] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:11.657  INFO 45552 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:11.760  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:11.856  INFO 45552 --- [http-nio-8080-exec-10] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:11.969  INFO 45552 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:12.075  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:12.159  INFO 45552 --- [http-nio-8080-exec-10] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:12.284  INFO 45552 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:12.370  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:12.458  INFO 45552 --- [http-nio-8080-exec-10] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:12.578  INFO 45552 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:12.683  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:12.745  INFO 45552 --- [http-nio-8080-exec-10] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:12.864  INFO 45552 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:12.980  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:13.080  INFO 45552 --- [http-nio-8080-exec-10] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:13.154  INFO 45552 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:13.257  INFO 45552 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:13.387  INFO 45552 --- [http-nio-8080-exec-6] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:13.487  INFO 45552 --- [http-nio-8080-exec-5] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:13.577  INFO 45552 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:13.680  INFO 45552 --- [http-nio-8080-exec-6] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:13.792  INFO 45552 --- [http-nio-8080-exec-5] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:13.878  INFO 45552 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:13.983  INFO 45552 --- [http-nio-8080-exec-6] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:14.078  INFO 45552 --- [http-nio-8080-exec-5] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:14.164  INFO 45552 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:14.262  INFO 45552 --- [http-nio-8080-exec-6] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:14.372  INFO 45552 --- [http-nio-8080-exec-5] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:14.495  INFO 45552 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:14.589  INFO 45552 --- [http-nio-8080-exec-8] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:14.670  INFO 45552 --- [http-nio-8080-exec-9] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:14.780  INFO 45552 --- [http-nio-8080-exec-7] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:14.926  INFO 45552 --- [http-nio-8080-exec-6] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:14.987  INFO 45552 --- [http-nio-8080-exec-9] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:15.066  INFO 45552 --- [http-nio-8080-exec-7] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:15.173  INFO 45552 --- [http-nio-8080-exec-6] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:15.318  INFO 45552 --- [http-nio-8080-exec-5] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:15.406  INFO 45552 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:15.472  INFO 45552 --- [http-nio-8080-exec-6] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:15.562  INFO 45552 --- [http-nio-8080-exec-5] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:15.667  INFO 45552 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:15.781  INFO 45552 --- [http-nio-8080-exec-6] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:15.939  INFO 45552 --- [http-nio-8080-exec-8] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:16.044  INFO 45552 --- [http-nio-8080-exec-7] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:16.094  INFO 45552 --- [http-nio-8080-exec-1] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:16.160  INFO 45552 --- [http-nio-8080-exec-9] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:16.243  INFO 45552 --- [http-nio-8080-exec-7] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:16.343  INFO 45552 --- [http-nio-8080-exec-1] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:16.468  INFO 45552 --- [http-nio-8080-exec-9] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:16.569  INFO 45552 --- [http-nio-8080-exec-7] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:16.659  INFO 45552 --- [http-nio-8080-exec-1] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:16.761  INFO 45552 --- [http-nio-8080-exec-9] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:16.869  INFO 45552 --- [http-nio-8080-exec-7] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:16.971  INFO 45552 --- [http-nio-8080-exec-1] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:17.095  INFO 45552 --- [http-nio-8080-exec-9] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:17.203  INFO 45552 --- [http-nio-8080-exec-7] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:17.298  INFO 45552 --- [http-nio-8080-exec-1] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:17.399  INFO 45552 --- [http-nio-8080-exec-9] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:17.504  INFO 45552 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:17.572  INFO 45552 --- [http-nio-8080-exec-1] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:17.664  INFO 45552 --- [http-nio-8080-exec-9] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:17.741  INFO 45552 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:17.859  INFO 45552 --- [http-nio-8080-exec-1] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:17.985  INFO 45552 --- [http-nio-8080-exec-9] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:18.081  INFO 45552 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:18.178  INFO 45552 --- [http-nio-8080-exec-1] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:18.317  INFO 45552 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:18.396  INFO 45552 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:18.470  INFO 45552 --- [http-nio-8080-exec-1] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:18.563  INFO 45552 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:18.657  INFO 45552 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:18.783  INFO 45552 --- [http-nio-8080-exec-1] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:18.912  INFO 45552 --- [http-nio-8080-exec-7] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:18.982  INFO 45552 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:19.075  INFO 45552 --- [http-nio-8080-exec-1] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:19.162  INFO 45552 --- [http-nio-8080-exec-7] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:19.262  INFO 45552 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:19.435  INFO 45552 --- [http-nio-8080-exec-6] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:19.506  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:19.600  INFO 45552 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:19.660  INFO 45552 --- [http-nio-8080-exec-6] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:19.775  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:19.895  INFO 45552 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:19.997  INFO 45552 --- [http-nio-8080-exec-6] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:20.093  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:20.202  INFO 45552 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:20.280  INFO 45552 --- [http-nio-8080-exec-6] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:20.364  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:20.472  INFO 45552 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:20.595  INFO 45552 --- [http-nio-8080-exec-6] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:20.679  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:20.771  INFO 45552 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:20.878  INFO 45552 --- [http-nio-8080-exec-6] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:20.996  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:21.091  INFO 45552 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:21.213  INFO 45552 --- [http-nio-8080-exec-8] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:21.295  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:21.374  INFO 45552 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:21.490  INFO 45552 --- [http-nio-8080-exec-8] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:21.571  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:21.688  INFO 45552 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:21.773  INFO 45552 --- [http-nio-8080-exec-8] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:21.861  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:21.999  INFO 45552 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:22.093  INFO 45552 --- [http-nio-8080-exec-8] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:22.179  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:22.327  INFO 45552 --- [http-nio-8080-exec-1] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:22.414  INFO 45552 --- [http-nio-8080-exec-10] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:22.463  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:22.569  INFO 45552 --- [http-nio-8080-exec-1] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:22.665  INFO 45552 --- [http-nio-8080-exec-10] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:22.757  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:22.865  INFO 45552 --- [http-nio-8080-exec-7] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:22.977  INFO 45552 --- [http-nio-8080-exec-10] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:23.056  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:23.189  INFO 45552 --- [http-nio-8080-exec-7] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:23.284  INFO 45552 --- [http-nio-8080-exec-10] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:23.371  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:23.471  INFO 45552 --- [http-nio-8080-exec-7] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:23.596  INFO 45552 --- [http-nio-8080-exec-10] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:23.680  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:23.795  INFO 45552 --- [http-nio-8080-exec-7] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:23.895  INFO 45552 --- [http-nio-8080-exec-10] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:24.002  INFO 45552 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:45:24.083  INFO 45552 --- [http-nio-8080-exec-8] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 127.0.0.1
+2025-05-18 20:50:55.444  INFO 45552 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-18 20:50:55.445  INFO 45552 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-18 20:50:55.453  INFO 45552 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-18 20:51:14.594  INFO 48884 --- [main] com.secure.DemoApplication               : Starting DemoApplication using Java 23.0.1 on BasharN with PID 48884 (C:\Users\basha\SE\ProgressTracking\target\classes started by basha in C:\Users\basha\SE\ProgressTracking)
+2025-05-18 20:51:14.596  INFO 48884 --- [main] com.secure.DemoApplication               : No active profile set, falling back to 1 default profile: "default"
+2025-05-18 20:51:15.010  INFO 48884 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-18 20:51:15.048  INFO 48884 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 34 ms. Found 5 JPA repository interfaces.
+2025-05-18 20:51:15.398  INFO 48884 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2025-05-18 20:51:15.404  INFO 48884 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-18 20:51:15.404  INFO 48884 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.83]
+2025-05-18 20:51:15.472  INFO 48884 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-18 20:51:15.472  INFO 48884 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 838 ms
+2025-05-18 20:51:15.566  INFO 48884 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-18 20:51:15.606  INFO 48884 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2025-05-18 20:51:15.728  INFO 48884 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2025-05-18 20:51:15.788  INFO 48884 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-18 20:51:16.061  INFO 48884 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-18 20:51:16.077  INFO 48884 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2025-05-18 20:51:16.644  INFO 48884 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-05-18 20:51:16.652  INFO 48884 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-18 20:51:17.064  WARN 48884 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-18 20:51:17.152  INFO 48884 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2148849f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@9771c71, org.springframework.security.web.context.SecurityContextPersistenceFilter@211cf27b, org.springframework.security.web.header.HeaderWriterFilter@18d09283, org.springframework.security.web.csrf.CsrfFilter@4779df3d, org.springframework.security.web.authentication.logout.LogoutFilter@70680f88, com.secure.security.config.WebSecurityConfig$1@63c66980, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@35975b05, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1e4b9592, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@27e656e6, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@8cce9ad, org.springframework.security.web.session.SessionManagementFilter@943cf5, org.springframework.security.web.access.ExceptionTranslationFilter@601e7c97, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@397f925e]
+2025-05-18 20:51:17.407  INFO 48884 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2025-05-18 20:51:17.412  INFO 48884 --- [main] com.secure.DemoApplication               : Started DemoApplication in 3.092 seconds (JVM running for 3.556)
+2025-05-18 20:51:18.716  INFO 48884 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-18 20:51:18.716  INFO 48884 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-18 20:51:18.717  INFO 48884 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-05-18 20:51:18.758  INFO 48884 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /login from IP: 0:0:0:0:0:0:0:1
+2025-05-18 20:51:18.979  INFO 48884 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /css/pro.css from IP: 0:0:0:0:0:0:0:1
+2025-05-18 20:51:21.542  INFO 48884 --- [http-nio-8080-exec-5] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 0:0:0:0:0:0:0:1
+2025-05-18 20:51:23.851  INFO 48884 --- [http-nio-8080-exec-6] com.secure.logging.RequestLoggingFilter  : Incoming request: POST /verify-otp from IP: 0:0:0:0:0:0:0:1
+2025-05-18 20:51:25.576  INFO 48884 --- [http-nio-8080-exec-8] com.secure.logging.RequestLoggingFilter  : Incoming request: POST /verify-otp from IP: 0:0:0:0:0:0:0:1
+2025-05-18 20:51:28.738  INFO 48884 --- [http-nio-8080-exec-9] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 0:0:0:0:0:0:0:1
+2025-05-18 20:51:30.393  INFO 48884 --- [http-nio-8080-exec-7] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /login from IP: 0:0:0:0:0:0:0:1
+2025-05-18 20:51:30.442  INFO 48884 --- [http-nio-8080-exec-10] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /css/pro.css from IP: 0:0:0:0:0:0:0:1
+2025-05-18 20:51:31.864  INFO 48884 --- [http-nio-8080-exec-1] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /login from IP: 0:0:0:0:0:0:0:1
+2025-05-18 20:51:31.897  INFO 48884 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /css/pro.css from IP: 0:0:0:0:0:0:0:1
+2025-05-18 20:51:32.255  INFO 48884 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /login from IP: 0:0:0:0:0:0:0:1
+2025-05-18 20:51:51.650  INFO 48884 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-18 20:51:51.653  INFO 48884 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-18 20:51:51.665  INFO 48884 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-18 20:51:59.696  INFO 67060 --- [main] com.secure.DemoApplication               : Starting DemoApplication using Java 23.0.1 on BasharN with PID 67060 (C:\Users\basha\SE\ProgressTracking\target\classes started by basha in C:\Users\basha\SE\ProgressTracking)
+2025-05-18 20:51:59.697  INFO 67060 --- [main] com.secure.DemoApplication               : No active profile set, falling back to 1 default profile: "default"
+2025-05-18 20:52:00.191  INFO 67060 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-18 20:52:00.237  INFO 67060 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 41 ms. Found 5 JPA repository interfaces.
+2025-05-18 20:52:00.606  INFO 67060 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2025-05-18 20:52:00.611  INFO 67060 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-18 20:52:00.612  INFO 67060 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.83]
+2025-05-18 20:52:00.679  INFO 67060 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-18 20:52:00.680  INFO 67060 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 942 ms
+2025-05-18 20:52:00.795  INFO 67060 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-18 20:52:00.831  INFO 67060 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2025-05-18 20:52:00.942  INFO 67060 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2025-05-18 20:52:01.000  INFO 67060 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-18 20:52:01.280  INFO 67060 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-18 20:52:01.291  INFO 67060 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2025-05-18 20:52:01.839  INFO 67060 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-05-18 20:52:01.846  INFO 67060 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-18 20:52:02.266  WARN 67060 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-18 20:52:02.351  INFO 67060 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@530a46f4, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3180131e, org.springframework.security.web.context.SecurityContextPersistenceFilter@2446be5f, org.springframework.security.web.header.HeaderWriterFilter@63fde7ca, org.springframework.security.web.authentication.logout.LogoutFilter@441762b8, com.secure.security.config.WebSecurityConfig$1@62376bdd, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@7d836c4a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5b4880b3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6892d403, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3b8a063d, org.springframework.security.web.session.SessionManagementFilter@4779df3d, org.springframework.security.web.access.ExceptionTranslationFilter@13edc1bc, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4a225014]
+2025-05-18 20:52:02.609  INFO 67060 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2025-05-18 20:52:02.615  INFO 67060 --- [main] com.secure.DemoApplication               : Started DemoApplication in 3.177 seconds (JVM running for 3.66)
+2025-05-18 20:52:02.802  INFO 67060 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-18 20:52:02.802  INFO 67060 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-18 20:52:02.803  INFO 67060 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-05-18 20:52:02.816  INFO 67060 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /login from IP: 0:0:0:0:0:0:0:1
+2025-05-18 20:52:03.094  INFO 67060 --- [http-nio-8080-exec-1] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /css/pro.css from IP: 0:0:0:0:0:0:0:1
+2025-05-18 20:52:03.986  INFO 67060 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /login from IP: 0:0:0:0:0:0:0:1
+2025-05-18 20:59:50.372  INFO 67060 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-18 20:59:50.375  INFO 67060 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-18 20:59:50.397  INFO 67060 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
