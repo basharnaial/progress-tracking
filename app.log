@@ -397,3 +397,76 @@
 2025-05-18 20:59:50.372  INFO 67060 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-05-18 20:59:50.375  INFO 67060 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2025-05-18 20:59:50.397  INFO 67060 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-18 21:19:36.300  INFO 13252 --- [main] com.secure.DemoApplication               : Starting DemoApplication using Java 23.0.1 on BasharN with PID 13252 (C:\Users\basha\SE\ProgressTracking\target\classes started by basha in C:\Users\basha\SE\ProgressTracking)
+2025-05-18 21:19:36.306  INFO 13252 --- [main] com.secure.DemoApplication               : No active profile set, falling back to 1 default profile: "default"
+2025-05-18 21:19:37.321  INFO 13252 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-18 21:19:37.438  INFO 13252 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 104 ms. Found 5 JPA repository interfaces.
+2025-05-18 21:19:38.611  INFO 13252 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2025-05-18 21:19:38.627  INFO 13252 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-18 21:19:38.627  INFO 13252 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.83]
+2025-05-18 21:19:38.767  INFO 13252 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-18 21:19:38.774  INFO 13252 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2380 ms
+2025-05-18 21:19:38.982  INFO 13252 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-18 21:19:39.096  INFO 13252 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2025-05-18 21:19:39.376  INFO 13252 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2025-05-18 21:19:39.540  INFO 13252 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-18 21:19:40.259  INFO 13252 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-18 21:19:40.290  INFO 13252 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2025-05-18 21:19:41.822  INFO 13252 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-05-18 21:19:41.839  INFO 13252 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-18 21:19:42.763  WARN 13252 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-18 21:19:42.993  INFO 13252 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2148849f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@9771c71, org.springframework.security.web.context.SecurityContextPersistenceFilter@6672b0ea, org.springframework.security.web.header.HeaderWriterFilter@151f1734, org.springframework.security.web.authentication.logout.LogoutFilter@757f47f0, com.secure.security.config.WebSecurityConfig$1@63c66980, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@35975b05, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@943cf5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1e4b9592, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@8cce9ad, org.springframework.security.web.session.SessionManagementFilter@c8ed958, org.springframework.security.web.access.ExceptionTranslationFilter@4c941d19, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@397f925e]
+2025-05-18 21:19:43.561  INFO 13252 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2025-05-18 21:19:43.572  INFO 13252 --- [main] com.secure.DemoApplication               : Started DemoApplication in 7.926 seconds (JVM running for 8.918)
+2025-05-18 21:19:46.253  INFO 13252 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-18 21:19:46.253  INFO 13252 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-18 21:19:46.255  INFO 13252 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-05-18 21:19:46.287  INFO 13252 --- [http-nio-8080-exec-1] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:19:54.091  INFO 13252 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: POST /verify-otp from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:19:55.873  INFO 13252 --- [http-nio-8080-exec-5] com.secure.logging.RequestLoggingFilter  : Incoming request: POST /verify-otp from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:19:58.436  INFO 13252 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:19:59.054  INFO 13252 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /login from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:19:59.129  INFO 13252 --- [http-nio-8080-exec-6] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /css/pro.css from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:20:00.936  INFO 13252 --- [http-nio-8080-exec-7] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /login from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:20:01.031  INFO 13252 --- [http-nio-8080-exec-8] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /css/pro.css from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:20:10.726  INFO 13252 --- [http-nio-8080-exec-10] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:20:55.623  INFO 13252 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: POST /verify-otp from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:21:17.054  INFO 13252 --- [http-nio-8080-exec-5] com.secure.logging.RequestLoggingFilter  : Incoming request: POST /verify-otp from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:21:17.136  INFO 13252 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /dashboard from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:21:17.268  INFO 13252 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /css/pro.css from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:21:17.277  INFO 13252 --- [http-nio-8080-exec-6] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /css/dashboard-tutor.css from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:21:17.382  INFO 13252 --- [http-nio-8080-exec-7] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /api/dashboard/overview from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:22:17.034  INFO 13252 --- [http-nio-8080-exec-9] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /api/courses/1/gpa from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:23:08.225  INFO 13252 --- [http-nio-8080-exec-10] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /dashboard from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:23:08.305  INFO 13252 --- [http-nio-8080-exec-1] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /css/pro.css from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:23:08.306  INFO 13252 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /css/dashboard-tutor.css from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:23:08.337  INFO 13252 --- [http-nio-8080-exec-5] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /api/dashboard/overview from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:23:10.488  INFO 13252 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /api/courses/1/gpa from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:23:33.482  INFO 13252 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /dashboard from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:23:33.555  INFO 13252 --- [http-nio-8080-exec-6] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /css/pro.css from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:23:33.558  INFO 13252 --- [http-nio-8080-exec-7] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /css/dashboard-tutor.css from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:23:33.580  INFO 13252 --- [http-nio-8080-exec-8] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /api/dashboard/overview from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:23:35.871  INFO 13252 --- [http-nio-8080-exec-9] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /api/courses/1/gpa from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:24:43.110  INFO 13252 --- [http-nio-8080-exec-1] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /api/courses/1/students-for-grading from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:26:02.162  INFO 13252 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /api/courses/1/students from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:38:03.841  WARN 13252 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=8m53s359ms119µs300ns).
+2025-05-18 21:38:46.362  INFO 13252 --- [http-nio-8080-exec-7] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /login from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:38:46.414  INFO 13252 --- [http-nio-8080-exec-8] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /css/pro.css from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:38:52.105  INFO 13252 --- [http-nio-8080-exec-10] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:39:06.494  INFO 13252 --- [http-nio-8080-exec-2] com.secure.logging.RequestLoggingFilter  : Incoming request: POST /verify-otp from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:39:06.533  INFO 13252 --- [http-nio-8080-exec-1] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /dashboard-student from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:39:06.688  INFO 13252 --- [http-nio-8080-exec-5] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /css/pro.css from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:39:06.700  INFO 13252 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /css/dashboard-tutor.css from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:40:12.355  INFO 13252 --- [http-nio-8080-exec-8] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /css/pro.css from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:40:43.057  INFO 13252 --- [http-nio-8080-exec-9] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /gams,ngang,a from IP: 0:0:0:0:0:0:0:1
+2025-05-18 21:40:43.139  INFO 13252 --- [http-nio-8080-exec-10] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /css/pro.css from IP: 0:0:0:0:0:0:0:1
+2025-05-18 22:06:09.246  INFO 13252 --- [http-nio-8080-exec-4] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /css/pro.css from IP: 0:0:0:0:0:0:0:1
+2025-05-18 22:06:10.930  INFO 13252 --- [http-nio-8080-exec-6] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /dashboard-student from IP: 0:0:0:0:0:0:0:1
+2025-05-18 22:06:11.119  INFO 13252 --- [http-nio-8080-exec-3] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /css/pro.css from IP: 0:0:0:0:0:0:0:1
+2025-05-18 22:06:11.126  INFO 13252 --- [http-nio-8080-exec-7] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /css/dashboard-tutor.css from IP: 0:0:0:0:0:0:0:1
+2025-05-18 22:06:12.795  INFO 13252 --- [http-nio-8080-exec-9] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /login from IP: 0:0:0:0:0:0:0:1
+2025-05-18 22:06:12.891  INFO 13252 --- [http-nio-8080-exec-10] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /css/pro.css from IP: 0:0:0:0:0:0:0:1
+2025-05-18 22:06:17.147  INFO 13252 --- [http-nio-8080-exec-1] com.secure.logging.RequestLoggingFilter  : Incoming request: GET /verify-otp from IP: 0:0:0:0:0:0:0:1
+2025-05-18 22:20:36.274  INFO 13252 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-18 22:20:36.292  INFO 13252 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-18 22:20:36.307  INFO 13252 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
