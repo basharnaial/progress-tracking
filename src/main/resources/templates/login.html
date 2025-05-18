@@ -22,12 +22,10 @@
         <div class="brand">Progress&amp;Tracking <span>Login</span></div>
         <div class="security-warning">AUTHORIZED ACCESS ONLY</div>
         <div th:if="${param.error}" class="alert alert-error">
-            اسم المستخدم أو كلمة المرور غير صحيحة أو الحساب غير مفعل.
+            <span th:if="${param.error[0] == 'captcha'}">Check Recaptcha.</span>
+            <span th:unless="${param.error[0] == 'captcha'}">Password/ Email not correct or Email is disabled.</span>
         </div>
-        <div th:if="${param.error} == 'captcha'" class="alert alert-error">
-            يرجى التحقق من الكابتشا.
-        </div>
-        <form class="login-box" th:action="@{/login}" method="post">
+        <form class="login-box" th:action="@{/login}" method="post" id="loginForm">
             <input type="text" name="username" placeholder="Username" required />
             <input type="password" name="password" placeholder="Password" required />
 
@@ -37,15 +35,41 @@
             </div>
 
             <div class="form-group">
-                <div class="g-recaptcha" data-sitekey="6Lcabj4rAAAAAHRhGUmcZ02rsO36ke9eLE1NcuAY"></div>
+                <div class="g-recaptcha"
+                     data-sitekey="6Lf5SD8rAAAAAJ4CuwqMLd2sHabSMyt0cfKvTV3s"
+                     data-callback="onRecaptchaComplete"
+                     data-expired-callback="onRecaptchaExpired"></div>
             </div>
 
-            <button type="submit">Login</button>
+            <button type="submit" id="submitBtn" disabled>Login</button>
 
             <div class="forgot">
                 <a href="#">Forgot Password?</a>
             </div>
         </form>
     </div>
+
+    <script>
+        function onRecaptchaComplete(response) {
+            console.log('reCAPTCHA completed:', response);
+            document.getElementById('submitBtn').disabled = false;
+        }
+
+        function onRecaptchaExpired() {
+            console.log('reCAPTCHA expired');
+            document.getElementById('submitBtn').disabled = true;
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            var response = grecaptcha.getResponse();
+            console.log('Form submit - reCAPTCHA response:', response);
+
+            if (!response) {
+                e.preventDefault();
+                alert('Please complete the reCAPTCHA verification');
+                return;
+            }
+        });
+    </script>
 </body>
 </html>

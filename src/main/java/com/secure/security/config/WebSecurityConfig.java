@@ -23,6 +23,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import com.secure.email.EmailSender;
 import com.secure.registration.token.OtpTokenService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Configuration
 @AllArgsConstructor
@@ -41,6 +43,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private EmailSender emailSender;
+
+    private static final Logger logger = LoggerFactory.getLogger(WebSecurityConfig.class);
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -69,10 +73,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                                           FilterChain filterChain) throws ServletException, IOException {
                 if (request.getMethod().equals("POST") && request.getRequestURI().equals("/login")) {
                     String recaptchaResponse = request.getParameter("g-recaptcha-response");
-                    if (recaptchaResponse == null || !recaptchaService.verifyRecaptcha(recaptchaResponse)) {
+//                    logger.debug("Received reCAPTCHA response: {}", recaptchaResponse);
+
+                    if (recaptchaResponse == null || recaptchaResponse.isEmpty()) {
+                        logger.warn("reCAPTCHA response is missing or empty");
                         response.sendRedirect("/login?error=captcha");
                         return;
                     }
+
+                    if (!recaptchaService.verifyRecaptcha(recaptchaResponse)) {
+                        logger.warn("reCAPTCHA verification failed");
+                        response.sendRedirect("/login?error=captcha");
+                        return;
+                    }
+
+                    logger.debug("reCAPTCHA verification successful");
                 }
                 filterChain.doFilter(request, response);
             }
@@ -99,12 +114,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             Object principal = authentication.getPrincipal();
             if (principal instanceof com.secure.appuser.AppUser) {
                 com.secure.appuser.AppUser user = (com.secure.appuser.AppUser) principal;
-                
+
                 // Generate and send OTP
                 String otp = otpTokenService.generateOtp(user);
                 String emailBody = buildOtpEmail(user.getFirstName(), otp);
                 emailSender.send(user.getEmail(), emailBody);
-                
+
                 // Redirect to OTP verification page
                 response.sendRedirect("/verify-otp");
                 return;
