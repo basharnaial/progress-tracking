@@ -17,11 +17,19 @@ public class RecaptchaConfig {
     @Value("${recaptcha.url}")
     private String recaptchaUrl;
 
+    @Value("${recaptcha.enabled:true}")
+    private boolean recaptchaEnabled;
+
     @Service
     public class RecaptchaService {
         private final RestTemplate restTemplate = new RestTemplate();
 
         public boolean verifyRecaptcha(String recaptchaResponse) {
+            // Skip verification if reCAPTCHA is disabled
+            if (!recaptchaEnabled) {
+                return true;
+            }
+
             MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
             params.add("secret", recaptchaSecret);
             params.add("response", recaptchaResponse);
