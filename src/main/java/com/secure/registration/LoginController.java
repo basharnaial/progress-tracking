@@ -5,6 +5,7 @@ import com.secure.course.Course;
 import com.secure.model.StudentCourseRepository;
 import com.secure.model.StudentCourse;
 import com.secure.appuser.AppUser;
+import com.secure.appuser.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,6 +21,9 @@ public class LoginController {
 
     @Autowired
     private StudentCourseRepository studentCourseRepository;
+
+    @Autowired
+    private AppUserRepository appUserRepository;
 
     @GetMapping("/login")
     public String loginPage() {
@@ -46,7 +50,9 @@ public class LoginController {
     public String users(Model model) {
         List<Course> courses = courseRepository.findAll();
         model.addAttribute("courses", courses);
-        model.addAttribute("activeTab", "courses");
+        model.addAttribute("activeTab", "users");
+        List<AppUser> users = appUserRepository.findAll();
+        model.addAttribute("users", users);
         return "users";
     }
 

@@ -18,7 +18,6 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Role</th>
-                    <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -38,10 +37,9 @@
                 </tr>
                 <tr th:each="user : ${users}">
                     <td th:text="${user.id}"></td>
-                    <td th:text="${user.name}"></td>
+                    <td th:text="${user.firstName + ' ' + user.lastName}"></td>
                     <td th:text="${user.email}"></td>
-                    <td th:classappend="${user.role == 'Student'} ? 'role-student' : 'role-teacher'" th:text="${user.role}"></td>
-                    <td><a class="edit-link" th:href="@{/users/{id}/edit(id=${user.id})}">Edit</a></td>
+                    <td th:classappend="${user.appUserRole.name() == 'STUDENT'} ? 'role-student' : 'role-teacher'" th:text="${user.appUserRole}"></td>
                 </tr>
                 </tbody>
             </table>
