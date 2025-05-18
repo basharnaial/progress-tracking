@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="navbarFragment">
+    <div class="navbar">
+        <a class="navbar-title" th:href="@{/dashboard-student}">Student Dashboard</a>
+        <ul>
+            <li th:classappend="${activeTab} == 'dashboard' ? 'active'">
+                <a th:href="@{/dashboard-student}">Dashboard</a>
+            </li>
+        </ul>
+        <div class="navbar-right">
+        </div>
+    </div>
+</div>
+</html> 
