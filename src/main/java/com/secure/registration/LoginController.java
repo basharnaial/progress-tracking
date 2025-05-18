@@ -34,13 +34,13 @@ public class LoginController {
         return "dashboard-tutor";
     }
 
-    @GetMapping("/attendance")
-    public String attendance(Model model) {
-        List<Course> courses = courseRepository.findAll();
-        model.addAttribute("courses", courses);
-        model.addAttribute("activeTab", "courses");
-        return "attendance";
-    }
+//    @GetMapping("/attendance")
+//    public String attendance(Model model) {
+//        List<Course> courses = courseRepository.findAll();
+//        model.addAttribute("courses", courses);
+//        model.addAttribute("activeTab", "courses");
+//        return "attendance";
+//    }
 
     @GetMapping("/users")
     public String users(Model model) {
